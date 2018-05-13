@@ -1,0 +1,1 @@
+include ':featureone', ':app', ':base', ':instantapp'

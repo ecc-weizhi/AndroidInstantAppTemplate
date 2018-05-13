@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:pathPrefix="/androidinstantapptemplate/featureone"
                     android:host="eccweizhi.app"
+                    android:pathPrefix="/androidinstantapptemplate/featureone"
                     android:scheme="http" />
             </intent-filter>
         </activity>

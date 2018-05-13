@@ -31,7 +31,7 @@
 
                 <data
                     android:host="eccweizhi.app"
-                    android:pathPattern="/androidinstantapptemplate/*"
+                    android:path="/androidinstantapptemplate"
                     android:scheme="https" />
             </intent-filter>
             <intent-filter android:order="1">
@@ -42,7 +42,29 @@
 
                 <data
                     android:host="eccweizhi.app"
-                    android:pathPattern="/androidinstantapptemplate/*"
+                    android:path="/androidinstantapptemplate"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="eccweizhi.app"
+                    android:path="/androidinstantapptemplate/"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="eccweizhi.app"
+                    android:path="/androidinstantapptemplate/"
                     android:scheme="http" />
             </intent-filter>
         </activity>

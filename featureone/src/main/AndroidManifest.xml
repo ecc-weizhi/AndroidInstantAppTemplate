@@ -4,7 +4,9 @@
 
     <application>
         <activity android:name=".ui.FeatureOneActivity">
-            <intent-filter android:order="1">
+            <intent-filter
+                android:autoVerify="true"
+                android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.BROWSABLE" />

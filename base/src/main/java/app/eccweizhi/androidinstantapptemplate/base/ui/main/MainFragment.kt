@@ -1,4 +1,4 @@
-package app.eccweizhi.androidinstantapptemplate.ui.main
+package app.eccweizhi.androidinstantapptemplate.base.ui.main
 
 import android.content.Context
 import android.os.Bundle
@@ -6,13 +6,12 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import app.eccweizhi.androidinstantapptemplate.R
-import app.eccweizhi.androidinstantapptemplate.ScreenIdentifier
-import app.eccweizhi.androidinstantapptemplate.ui.BaseFragment
-import app.eccweizhi.androidinstantapptemplate.ui.BaseKey
-import app.eccweizhi.androidinstantapptemplate.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.R
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
+import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
 class MainFragment : BaseFragment(),
@@ -67,8 +66,8 @@ class MainFragment : BaseFragment(),
 
     @Parcelize
     data class MainKey(val clazz: String) : BaseKey() {
-        constructor() : this(MainFragment.FRAGMENT_TAG)
+        constructor() : this(FRAGMENT_TAG)
 
-        override fun createFragment(): Fragment = MainFragment.newInstance()
+        override fun createFragment(): Fragment = newInstance()
     }
 }

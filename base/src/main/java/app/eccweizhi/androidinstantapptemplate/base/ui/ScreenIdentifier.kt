@@ -1,4 +1,4 @@
-package app.eccweizhi.androidinstantapptemplate
+package app.eccweizhi.androidinstantapptemplate.base.ui
 
 
 class ScreenIdentifier {

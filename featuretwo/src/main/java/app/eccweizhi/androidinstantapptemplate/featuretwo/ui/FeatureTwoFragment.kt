@@ -6,10 +6,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
+import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.featuretwo.R
-import app.eccweizhi.androidinstantapptemplate.ui.BaseFragment
-import app.eccweizhi.androidinstantapptemplate.ui.BaseKey
-import app.eccweizhi.androidinstantapptemplate.ui.FragmentListener
 import kotlinx.android.parcel.Parcelize
 
 

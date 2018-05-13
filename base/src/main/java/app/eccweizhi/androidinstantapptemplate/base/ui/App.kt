@@ -1,7 +1,7 @@
-package app.eccweizhi.androidinstantapptemplate.ui
+package app.eccweizhi.androidinstantapptemplate.base.ui
 
 import android.app.Application
-import app.eccweizhi.androidinstantapptemplate.BuildConfig
+import app.eccweizhi.androidinstantapptemplate.base.BuildConfig
 import timber.log.Timber
 
 

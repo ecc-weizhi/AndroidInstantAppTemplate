@@ -1,4 +1,4 @@
-package app.eccweizhi.androidinstantapptemplate.ui
+package app.eccweizhi.androidinstantapptemplate.base.ui
 
 import android.support.v4.app.Fragment
 

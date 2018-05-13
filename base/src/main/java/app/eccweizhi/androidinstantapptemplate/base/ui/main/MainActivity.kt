@@ -1,4 +1,4 @@
-package app.eccweizhi.androidinstantapptemplate.ui.main
+package app.eccweizhi.androidinstantapptemplate.base.ui.main
 
 import android.app.Activity
 import android.content.Intent
@@ -6,11 +6,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
-import app.eccweizhi.androidinstantapptemplate.R
-import app.eccweizhi.androidinstantapptemplate.ScreenIdentifier
-import app.eccweizhi.androidinstantapptemplate.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.ui.Key
-import kotlinx.android.synthetic.main.activity_main.*
+import app.eccweizhi.androidinstantapptemplate.base.R
+import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.ui.Key
+import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import timber.log.Timber
 import java.util.*
 

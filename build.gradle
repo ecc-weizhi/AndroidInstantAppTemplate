@@ -24,7 +24,6 @@ allprojects {
 
 // Defining variables that can be referenced in other build.gradle file
 ext {
-    applicationId = "app.eccweizhi.androidinstantapptemplate"
     compileSdkVersion = 27
     minSdkVersion = 19
     targetSdkVersion = 27

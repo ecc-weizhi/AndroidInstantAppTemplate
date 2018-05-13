@@ -2,7 +2,7 @@ package app.eccweizhi.androidinstantapptemplate.featuretwo.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import app.eccweizhi.androidinstantapptemplate.ui.main.MainActivity
+import app.eccweizhi.androidinstantapptemplate.base.ui.main.MainActivity
 import timber.log.Timber
 
 

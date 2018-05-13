@@ -23,7 +23,8 @@
                 android:name="default-url"
                 android:value="https://eccweizhi.app/androidinstantapptemplate" />
 
-            <intent-filter android:order="1">
+            <intent-filter android:autoVerify="true"
+                android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -34,7 +35,8 @@
                     android:path="/androidinstantapptemplate"
                     android:scheme="https" />
             </intent-filter>
-            <intent-filter android:order="1">
+            <intent-filter android:autoVerify="true"
+                android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -45,7 +47,8 @@
                     android:path="/androidinstantapptemplate"
                     android:scheme="http" />
             </intent-filter>
-            <intent-filter android:order="1">
+            <intent-filter android:autoVerify="true"
+                android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -56,7 +59,8 @@
                     android:path="/androidinstantapptemplate/"
                     android:scheme="https" />
             </intent-filter>
-            <intent-filter android:order="1">
+            <intent-filter android:autoVerify="true"
+                android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />

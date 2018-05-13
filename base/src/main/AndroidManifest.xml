@@ -14,20 +14,6 @@
             android:name="aia-compat-api-min-version"
             android:value="1" />
         <activity android:name=".ui.main.MainActivity">
-            <intent-filter
-                android:autoVerify="true"
-                android:order="1">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="eccweizhi.app"
-                    android:path="/androidinstantapptemplate"
-                    android:scheme="https" />
-                <data android:scheme="http" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,6 +22,29 @@
             <meta-data
                 android:name="default-url"
                 android:value="https://eccweizhi.app/androidinstantapptemplate" />
+
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="eccweizhi.app"
+                    android:pathPattern="/androidinstantapptemplate/*"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="eccweizhi.app"
+                    android:pathPattern="/androidinstantapptemplate/*"
+                    android:scheme="http" />
+            </intent-filter>
         </activity>
     </application>
 

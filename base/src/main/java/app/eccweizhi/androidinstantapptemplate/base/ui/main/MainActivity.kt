@@ -10,6 +10,7 @@ import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import java.util.*
 

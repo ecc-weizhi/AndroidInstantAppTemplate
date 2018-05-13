@@ -12,6 +12,7 @@ import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
 class MainFragment : BaseFragment(),

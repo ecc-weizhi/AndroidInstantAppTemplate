@@ -22,6 +22,30 @@ allprojects {
     }
 }
 
+// Defining variables that can be referenced in other build.gradle file
+ext {
+    applicationId = "app.eccweizhi.androidinstantapptemplate"
+    compileSdkVersion = 27
+    minSdkVersion = 19
+    targetSdkVersion = 27
+    versionCode = 1
+    versionName = "0.0.1"
+
+    // dependencies version
+    constraintVersion = '1.1.0'
+    dagger2Version = '2.13'
+    espressoVersion = '3.0.1'
+    groupieVersion = '2.0.3'
+    junitVersion = '4.12'
+    kotlinVersion = "$kotlin_version"
+    retrofit2Version = '2.3.0'
+    rxandroidVersion = '2.0.1'
+    rxjavaVersion = '2.1.7'
+    supportVersion = '27.1.1'
+    testVersion = '1.0.1'
+    timberVersion = '4.5.1'
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

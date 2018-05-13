@@ -3,7 +3,8 @@
     package="app.eccweizhi.androidinstantapptemplate">
 
     <application
-        android:allowBackup="true"
+        android:name=".ui.App"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -12,6 +13,24 @@
         <meta-data
             android:name="aia-compat-api-min-version"
             android:value="1" />
+        <activity android:name=".ui.main.MainActivity">
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="eccweizhi.app"
+                    android:path="/androidinstantapptemplate"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

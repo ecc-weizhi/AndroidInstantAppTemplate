@@ -1,6 +1,7 @@
 apply plugin: 'com.android.instantapp'
 
 dependencies {
+    implementation project(':featuretwo')
     implementation project(':featureone')
     implementation project(':base')
 }

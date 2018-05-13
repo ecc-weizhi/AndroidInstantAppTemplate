@@ -1,1 +1,1 @@
-include ':featureone', ':app', ':base', ':instantapp'
+include ':featureone', ':app', ':base', ':instantapp', ':featuretwo'

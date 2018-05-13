@@ -1,13 +1,26 @@
 apply plugin: 'com.android.feature'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+androidExtensions {
+    experimental = true
+}
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.compileSdkVersion
     baseFeature true
+
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -18,7 +31,33 @@ android {
 }
 
 dependencies {
-    api 'com.android.support:appcompat-v7:27.1.1'
+    api "com.android.support:appcompat-v7:$rootProject.supportVersion"
+    api "com.android.support:design:$rootProject.supportVersion"
+    api "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+
+    api "com.squareup.retrofit2:converter-jackson:$rootProject.retrofit2Version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit2Version"
+
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+
+    api "com.google.dagger:dagger:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    api "com.google.dagger:dagger-android-support:$rootProject.dagger2Version" // if you use the support libraries
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+
+    api "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+
+    testImplementation "junit:junit:$rootProject.junitVersion"
+
+    androidTestImplementation "com.android.support.test:runner:$rootProject.testVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+
     application project(':app')
     feature project(':featureone')
+    feature project(':featuretwo')
 }

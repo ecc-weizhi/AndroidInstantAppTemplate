@@ -33,6 +33,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="default-url"
+                android:value="https://eccweizhi.app/androidinstantapptemplate" />
         </activity>
     </application>
 

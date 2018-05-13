@@ -1,0 +1,7 @@
+keyStore=AndroidInstantAppTemplateKeyStore.jks
+
+keyStorePassword=mysecretpassword
+
+keyAlias=key0
+
+keyAliasPassword=mysecretpassword

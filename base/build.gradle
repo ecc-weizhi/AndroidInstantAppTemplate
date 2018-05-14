@@ -44,6 +44,7 @@ android.signingConfigs.release.keyAlias props.keyAlias
 android.signingConfigs.release.keyPassword props.keyAliasPassword
 
 dependencies {
+    api "com.google.android.instantapps:instantapps:$rootProject.instantAppVersion"
     api "com.android.support:appcompat-v7:$rootProject.supportVersion"
     api "com.android.support:design:$rootProject.supportVersion"
     api "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"

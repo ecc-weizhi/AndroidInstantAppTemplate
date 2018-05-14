@@ -11,7 +11,9 @@ import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import com.google.android.instantapps.InstantApps
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
@@ -29,6 +31,9 @@ class MainFragment : BaseFragment(),
         super.onViewCreated(view, savedInstanceState)
         view.featureOneButton.setOnClickListener(this)
         view.featureTwoButton.setOnClickListener(this)
+
+        packageIdText.text = "package: $context?.applicationContext?.packageName"
+        isInstantAppText.text = "isInstantApp: ${InstantApps.isInstantApp(context!!)}"
     }
 
     override fun onAttach(context: Context) {

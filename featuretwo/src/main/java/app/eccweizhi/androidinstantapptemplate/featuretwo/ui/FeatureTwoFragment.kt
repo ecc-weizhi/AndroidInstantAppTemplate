@@ -10,7 +10,9 @@ import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.featuretwo.R
+import com.google.android.instantapps.InstantApps
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.fragment_feature_two.*
 
 
 class FeatureTwoFragment : BaseFragment() {
@@ -29,6 +31,13 @@ class FeatureTwoFragment : BaseFragment() {
         } catch (e: ClassCastException) {
             throw ClassCastException("$context must implement FragmentListener")
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        packageIdText.text = "package: $context?.applicationContext?.packageName"
+        isInstantAppText.text = "isInstantApp: ${InstantApps.isInstantApp(context!!)}"
     }
 
     override fun onDetach() {

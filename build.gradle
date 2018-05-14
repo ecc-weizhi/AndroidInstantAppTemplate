@@ -35,6 +35,7 @@ ext {
     dagger2Version = '2.13'
     espressoVersion = '3.0.1'
     groupieVersion = '2.0.3'
+    instantAppVersion = '1.1.0'
     junitVersion = '4.12'
     kotlinVersion = "$kotlin_version"
     retrofit2Version = '2.3.0'

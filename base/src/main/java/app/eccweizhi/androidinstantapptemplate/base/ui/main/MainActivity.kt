@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity(),
         val newIntentBackstackKeys = intent.getParcelableArrayListExtra<Key>(EXTRA_KEY_BACKSTACK_KEYS)
         backstackKeys.addAll(newIntentBackstackKeys)
 
+        Toast.makeText(this, "onNewIntent: ${backstackKeys}", Toast.LENGTH_LONG).show()
         Timber.i("onNewIntent: %s", backstackKeys)
 
         goToFragment(backstackKeys.last())

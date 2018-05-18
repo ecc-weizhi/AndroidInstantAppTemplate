@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.app"
+                    android:host="eccweizhi.me"
                     android:path="/androidinstantapptemplate"
                     android:scheme="https" />
             </intent-filter>
@@ -43,7 +43,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.app"
+                    android:host="eccweizhi.me"
                     android:path="/androidinstantapptemplate"
                     android:scheme="http" />
             </intent-filter>
@@ -55,7 +55,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.app"
+                    android:host="eccweizhi.me"
                     android:path="/androidinstantapptemplate/"
                     android:scheme="https" />
             </intent-filter>
@@ -67,7 +67,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.app"
+                    android:host="eccweizhi.me"
                     android:path="/androidinstantapptemplate/"
                     android:scheme="http" />
             </intent-filter>

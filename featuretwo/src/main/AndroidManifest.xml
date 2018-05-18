@@ -12,7 +12,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.app"
+                    android:host="eccweizhi.me"
                     android:pathPrefix="/androidinstantapptemplate/featuretwo"
                     android:scheme="https" />
             </intent-filter>
@@ -25,7 +25,7 @@
 
                 <data
                     android:pathPrefix="/androidinstantapptemplate/featuretwo"
-                    android:host="eccweizhi.app"
+                    android:host="eccweizhi.me"
                     android:scheme="http" />
             </intent-filter>
         </activity>

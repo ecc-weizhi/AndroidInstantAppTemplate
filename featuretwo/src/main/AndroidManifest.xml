@@ -5,27 +5,27 @@
     <application>
         <activity android:name=".ui.FeatureTwoActivity">
             <intent-filter android:autoVerify="true"
-                android:order="1">
+                android:priority="1">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.me"
-                    android:pathPrefix="/androidinstantapptemplate/featuretwo"
+                    android:host="androidinstantapptemplate.eccweizhi.app"
+                    android:pathPrefix="/featuretwo"
                     android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true"
-                android:order="1">
+                android:priority="2">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:pathPrefix="/androidinstantapptemplate/featuretwo"
-                    android:host="eccweizhi.me"
+                    android:host="androidinstantapptemplate.eccweizhi.app"
+                    android:pathPrefix="/featuretwo"
                     android:scheme="http" />
             </intent-filter>
         </activity>

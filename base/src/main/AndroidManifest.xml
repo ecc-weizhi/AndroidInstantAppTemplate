@@ -21,54 +21,30 @@
             </intent-filter>
             <meta-data
                 android:name="default-url"
-                android:value="https://eccweizhi.app/androidinstantapptemplate" />
+                android:value="https://androidinstantapptemplate.eccweizhi.app" />
 
             <intent-filter android:autoVerify="true"
-                android:order="1">
+                android:priority="1">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.me"
-                    android:path="/androidinstantapptemplate"
+                    android:host="androidinstantapptemplate.eccweizhi.app"
+                    android:pathPattern="/.*"
                     android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true"
-                android:order="1">
+                android:priority="2">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="eccweizhi.me"
-                    android:path="/androidinstantapptemplate"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter android:autoVerify="true"
-                android:order="1">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="eccweizhi.me"
-                    android:path="/androidinstantapptemplate/"
-                    android:scheme="https" />
-            </intent-filter>
-            <intent-filter android:autoVerify="true"
-                android:order="1">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="eccweizhi.me"
-                    android:path="/androidinstantapptemplate/"
+                    android:host="androidinstantapptemplate.eccweizhi.app"
+                    android:pathPattern="/.*"
                     android:scheme="http" />
             </intent-filter>
         </activity>

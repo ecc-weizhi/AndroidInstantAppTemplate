@@ -2,31 +2,45 @@ package app.eccweizhi.androidinstantapptemplate.base.logger
 
 
 class CircularLog(val capacity: Int = 100) {
-    private val list: ArrayList<Message> = ArrayList(capacity)
-    private var headIndex = 0
-    private var tailIndex = 0
+    init {
+        if (capacity == 0) throw IllegalArgumentException("Capacity must be more than 0")
+    }
+
+    private val list: Array<Message?> = Array(capacity) { null }
+    private var firstElementIndex = -1
+    private var lastElementIndex = -1
     private var internalSize = 0
 
     val size: Int
         get() = internalSize
 
-    fun get(index: Int): Message {
+    fun get(index: Int): Message? {
         val rawIndex = convertToRawIndex(index)
         return list[rawIndex]
     }
 
-    fun isEmpty(): Boolean {
-        return internalSize == 0
-    }
-
     fun enqueue(message: Message) {
-        list[tailIndex] = message.copy()
-        if (internalSize == (capacity - 1)) {
-            headIndex = (headIndex + 1) % capacity
-        } else {
-            tailIndex = (tailIndex + 1) % capacity
-            internalSize++
+        // lastElementIndex
+        val newLastElementIndex = (lastElementIndex + 1) % capacity
+
+        // firstElementIndex
+        val newFirstElementIndex = when {
+            firstElementIndex == -1 -> 0
+            internalSize == capacity -> (firstElementIndex + 1) % capacity
+            else -> firstElementIndex
         }
+
+        // internalSize
+        val newInternalSize = if (internalSize < capacity) {
+            internalSize + 1
+        } else {
+            internalSize
+        }
+
+        list[newLastElementIndex] = message.copy()
+        lastElementIndex = newLastElementIndex
+        firstElementIndex = newFirstElementIndex
+        internalSize = newInternalSize
     }
 
     fun dequeue(): Message? {
@@ -34,9 +48,24 @@ class CircularLog(val capacity: Int = 100) {
             return null
         }
 
-        val message = list[headIndex]
-        headIndex = (headIndex + 1) % capacity
-        internalSize--
+        val message = list[firstElementIndex]
+
+        // firstElementIndex
+        firstElementIndex = if (internalSize == 1) {
+            -1
+        } else {
+            (firstElementIndex + 1) % capacity
+        }
+
+        // lastElementIndex
+        lastElementIndex = if (internalSize == 1) {
+            -1
+        } else {
+            lastElementIndex
+        }
+
+        // internalSize
+        internalSize++
 
         return message
     }
@@ -46,27 +75,27 @@ class CircularLog(val capacity: Int = 100) {
             throw ArrayIndexOutOfBoundsException("size: $size, index: $circularIndex")
         }
 
-        return if (headIndex > tailIndex) {
+        return if (firstElementIndex > lastElementIndex) {
             // wrap around
-            (headIndex + circularIndex) % capacity
+            (firstElementIndex + circularIndex) % capacity
         } else {
             // no wrap around
-            circularIndex + headIndex
+            firstElementIndex + circularIndex
         }
     }
 
     private fun convertToCircularIndex(rawIndex: Int): Int {
-        return if (headIndex > tailIndex) {
+        return if (firstElementIndex > lastElementIndex) {
             // wrap around
             when (rawIndex) {
-                in headIndex..(capacity - 1) -> rawIndex - headIndex
-                in 0..tailIndex -> (capacity - headIndex + 1) + rawIndex
+                in firstElementIndex..(capacity - 1) -> rawIndex - firstElementIndex
+                in 0..lastElementIndex -> (capacity - firstElementIndex) + rawIndex
                 else -> throw ArrayIndexOutOfBoundsException("size: $size, index: $rawIndex")
             }
         } else {
             // no wrap around
             when (rawIndex) {
-                in headIndex..tailIndex -> rawIndex - headIndex
+                in firstElementIndex..lastElementIndex -> rawIndex - firstElementIndex
                 else -> throw ArrayIndexOutOfBoundsException("size: $size, index: $rawIndex")
             }
         }

@@ -1,4 +1,4 @@
-package app.eccweizhi.androidinstantapptemplate.base.ui.main
+package app.eccweizhi.androidinstantapptemplate.base.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -8,9 +8,7 @@ import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import app.eccweizhi.androidinstantapptemplate.base.R
-import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.Key
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import java.util.*
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity(),
                     ?: arrayListOf()
 
             if (backstackKeys.isEmpty()) {
-                backstackKeys.add(MainFragment.MainKey())
+                backstackKeys.add(ListFragment.MainKey())
             }
 
             goToFragment(backstackKeys.last())

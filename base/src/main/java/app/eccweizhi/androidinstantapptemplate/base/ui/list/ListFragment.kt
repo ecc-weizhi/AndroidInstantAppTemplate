@@ -1,4 +1,4 @@
-package app.eccweizhi.androidinstantapptemplate.base.ui.main
+package app.eccweizhi.androidinstantapptemplate.base.ui.list
 
 import android.content.Context
 import android.os.Bundle
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
-class MainFragment : BaseFragment(),
+class ListFragment : BaseFragment(),
         View.OnClickListener {
     var fragmentListener: FragmentListener? = null
 
@@ -62,11 +62,11 @@ class MainFragment : BaseFragment(),
     }
 
     companion object {
-        const val FRAGMENT_TAG = "MainFragment"
+        const val FRAGMENT_TAG = "ListFragment"
 
         @JvmStatic
-        fun newInstance(): MainFragment {
-            return MainFragment()
+        fun newInstance(): ListFragment {
+            return ListFragment()
         }
     }
 

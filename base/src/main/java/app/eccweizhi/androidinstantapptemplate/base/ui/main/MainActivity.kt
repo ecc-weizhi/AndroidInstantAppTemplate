@@ -1,4 +1,4 @@
-package app.eccweizhi.androidinstantapptemplate.base.ui
+package app.eccweizhi.androidinstantapptemplate.base.ui.main
 
 import android.app.Activity
 import android.content.Intent
@@ -8,18 +8,32 @@ import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import app.eccweizhi.androidinstantapptemplate.base.R
+import app.eccweizhi.androidinstantapptemplate.base.ui.App
+import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.ui.Key
+import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity(),
+        Mvp.View,
         FragmentListener {
+
+    @Inject
+    protected lateinit var presenter: Mvp.Presenter
 
     private lateinit var backstackKeys: ArrayList<Key>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DaggerMainActivityComponent.builder()
+                .singletonComponent(App.INSTANCE.component)
+                .mainActivityModule(MainActivityModule(this))
+                .build()
+                .inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

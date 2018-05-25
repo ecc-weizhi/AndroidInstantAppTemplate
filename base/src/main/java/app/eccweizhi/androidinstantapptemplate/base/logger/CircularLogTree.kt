@@ -9,9 +9,9 @@ import javax.inject.Singleton
 class CircularLogTree @Inject constructor(private val circularLog: CircularLog) : Timber.Tree() {
 
     override fun log(priority: Int,
-                     tag: String,
-                     message: String,
-                     t: Throwable) {
+                     tag: String?,
+                     message: String?,
+                     t: Throwable?) {
         circularLog.enqueue(Message(System.currentTimeMillis(), tag, message))
     }
 }

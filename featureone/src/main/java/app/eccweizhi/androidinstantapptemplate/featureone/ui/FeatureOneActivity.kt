@@ -3,7 +3,7 @@ package app.eccweizhi.androidinstantapptemplate.featureone.ui
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import app.eccweizhi.androidinstantapptemplate.base.ui.MainActivity
+import app.eccweizhi.androidinstantapptemplate.base.ui.main.MainActivity
 
 
 class FeatureOneActivity: AppCompatActivity() {

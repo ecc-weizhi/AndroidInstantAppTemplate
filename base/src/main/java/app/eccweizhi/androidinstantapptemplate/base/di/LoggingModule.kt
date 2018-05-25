@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class LoggingModule {
     @Provides
     @Singleton
-    fun provideCircularLog(): CircularLog {
+    fun providesCircularLog(): CircularLog {
         return CircularLog(30)
     }
 }

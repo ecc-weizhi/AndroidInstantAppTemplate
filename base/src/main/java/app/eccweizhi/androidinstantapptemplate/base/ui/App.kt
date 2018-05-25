@@ -1,32 +1,33 @@
 package app.eccweizhi.androidinstantapptemplate.base.ui
 
-import android.app.Activity
 import android.app.Application
 import app.eccweizhi.androidinstantapptemplate.base.BuildConfig
+import app.eccweizhi.androidinstantapptemplate.base.di.AppModule
 import app.eccweizhi.androidinstantapptemplate.base.di.DaggerSingletonComponent
+import app.eccweizhi.androidinstantapptemplate.base.di.LoggingModule
+import app.eccweizhi.androidinstantapptemplate.base.di.SingletonComponent
 import app.eccweizhi.androidinstantapptemplate.base.logger.CircularLogTree
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class App : Application(), HasActivityInjector {
-    @Inject
-    internal lateinit var circularLogTree: CircularLogTree
-    @Inject
-    internal lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+class App : Application() {
+    lateinit var component: SingletonComponent
+        private set
 
+    @Inject
+    protected lateinit var circularLogTree: CircularLogTree
 
     override fun onCreate() {
         super.onCreate()
+        INSTANCE = this
 
-        DaggerSingletonComponent
+        component = DaggerSingletonComponent
                 .builder()
-                .application(this)
+                .appModule(AppModule(this))
+                .loggingModule(LoggingModule())
                 .build()
-                .inject(this)
+        component.inject(this)
 
         // logging should always be the first thing to be setup
         if (BuildConfig.DEBUG) {
@@ -36,7 +37,8 @@ class App : Application(), HasActivityInjector {
         }
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return activityDispatchingAndroidInjector
+    companion object {
+        lateinit var INSTANCE: App
+            private set
     }
 }

@@ -7,19 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.eccweizhi.androidinstantapptemplate.base.R
-import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
-import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
-import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import app.eccweizhi.androidinstantapptemplate.base.ui.*
 import com.google.android.instantapps.InstantApps
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import javax.inject.Inject
 
 
 class ListFragment : BaseFragment(),
+        Mvp.View,
         View.OnClickListener {
+    @Inject
+    lateinit var presenter: Mvp.Presenter
     var fragmentListener: FragmentListener? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        DaggerListFragmentComponent.builder()
+                .singletonComponent(App.INSTANCE.component)
+                .listFragmentModule(ListFragmentModule(this))
+                .build()
+                .inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,

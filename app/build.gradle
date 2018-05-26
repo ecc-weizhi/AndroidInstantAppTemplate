@@ -32,7 +32,9 @@ android.signingConfigs.release.keyAlias props.keyAlias
 android.signingConfigs.release.keyPassword props.keyAliasPassword
 
 dependencies {
-    implementation project(':featuretwo')
-    implementation project(':featureone')
+    implementation project(':spring')
+    implementation project(':summer')
+    implementation project(':autumn')
+    implementation project(':winter')
     implementation project(':base')
 }

@@ -78,8 +78,6 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
     application project(':app')
-    feature project(':featureone')
-    feature project(':featuretwo')
     feature project(":spring")
     feature project(":summer")
     feature project(":autumn")

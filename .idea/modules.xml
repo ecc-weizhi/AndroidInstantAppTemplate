@@ -6,8 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/autumn/autumn.iml" filepath="$PROJECT_DIR$/autumn/autumn.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/featureone/featureone.iml" filepath="$PROJECT_DIR$/featureone/featureone.iml" />
-      <module fileurl="file://$PROJECT_DIR$/featuretwo/featuretwo.iml" filepath="$PROJECT_DIR$/featuretwo/featuretwo.iml" />
       <module fileurl="file://$PROJECT_DIR$/instantapp/instantapp.iml" filepath="$PROJECT_DIR$/instantapp/instantapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/spring.iml" filepath="$PROJECT_DIR$/spring/spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/summer/summer.iml" filepath="$PROJECT_DIR$/summer/summer.iml" />

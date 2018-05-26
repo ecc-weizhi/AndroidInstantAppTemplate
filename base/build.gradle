@@ -80,4 +80,8 @@ dependencies {
     application project(':app')
     feature project(':featureone')
     feature project(':featuretwo')
+    feature project(":spring")
+    feature project(":summer")
+    feature project(":autumn")
+    feature project(":winter")
 }

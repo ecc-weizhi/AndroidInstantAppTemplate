@@ -1,1 +1,9 @@
-include ':featureone', ':app', ':base', ':instantapp', ':featuretwo'
+include ':featureone',
+        ':app',
+        ':base',
+        ':instantapp',
+        ':featuretwo',
+        ':spring',
+        ':summer',
+        ':autumn',
+        ':winter'

@@ -14,20 +14,11 @@
 
                 <data
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:pathPrefix="/spring"
+                    android:path="/spring"
                     android:scheme="https" />
-            </intent-filter>
-            <intent-filter
-                android:autoVerify="true"
-                android:priority="2">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:pathPrefix="/spring"
+                    android:path="/spring"
                     android:scheme="http" />
             </intent-filter>
         </activity>

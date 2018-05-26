@@ -25,7 +25,8 @@
                 android:name="default-url"
                 android:value="https://androidinstantapptemplate.eccweizhi.app" />
 
-            <intent-filter android:autoVerify="true"
+            <intent-filter
+                android:autoVerify="true"
                 android:priority="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -34,21 +35,15 @@
 
                 <data
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:pathPattern=".*"
+                    android:path="/"
                     android:scheme="https" />
-            </intent-filter>
-            <intent-filter android:autoVerify="true"
-                android:priority="2">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:pathPattern=".*"
+                    android:path="/"
                     android:scheme="http" />
+
             </intent-filter>
+
         </activity>
     </application>
 

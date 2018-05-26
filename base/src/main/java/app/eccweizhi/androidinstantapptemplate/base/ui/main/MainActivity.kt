@@ -97,17 +97,33 @@ class MainActivity : AppCompatActivity(),
 
     private fun performNavigate(identifier: String) {
         when (identifier) {
-            ScreenIdentifier.URI_FEATURE_ONE -> {
+            ScreenIdentifier.URI_FEATURE_SPRING -> {
                 val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(ScreenIdentifier.URI_FEATURE_ONE)).apply {
+                        Uri.parse(ScreenIdentifier.URI_FEATURE_SPRING)).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
                 }
 
                 startActivity(newIntent)
             }
-            ScreenIdentifier.URI_FEATURE_TWO -> {
+            ScreenIdentifier.URI_FEATURE_SUMMER -> {
                 val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(ScreenIdentifier.URI_FEATURE_TWO)).apply {
+                        Uri.parse(ScreenIdentifier.URI_FEATURE_SUMMER)).apply {
+                    addCategory(Intent.CATEGORY_BROWSABLE)
+                }
+
+                startActivity(newIntent)
+            }
+            ScreenIdentifier.URI_FEATURE_AUTUMN -> {
+                val newIntent = Intent(Intent.ACTION_VIEW,
+                        Uri.parse(ScreenIdentifier.URI_FEATURE_AUTUMN)).apply {
+                    addCategory(Intent.CATEGORY_BROWSABLE)
+                }
+
+                startActivity(newIntent)
+            }
+            ScreenIdentifier.URI_FEATURE_WINTER -> {
+                val newIntent = Intent(Intent.ACTION_VIEW,
+                        Uri.parse(ScreenIdentifier.URI_FEATURE_WINTER)).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
                 }
 

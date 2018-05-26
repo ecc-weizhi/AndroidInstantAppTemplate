@@ -34,7 +34,8 @@ ext {
     constraintVersion = '1.1.0'
     dagger2Version = '2.13'
     espressoVersion = '3.0.1'
-    groupieVersion = '2.0.3'
+    glideVersion = '4.7.1'
+    groupieVersion = '2.1.0'
     instantAppVersion = '1.1.0'
     junitVersion = '4.12'
     kotlinVersion = "$kotlin_version"

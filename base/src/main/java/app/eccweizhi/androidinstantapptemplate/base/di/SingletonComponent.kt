@@ -1,5 +1,6 @@
 package app.eccweizhi.androidinstantapptemplate.base.di
 
+import android.content.Context
 import app.eccweizhi.androidinstantapptemplate.base.logger.CircularLogTree
 import app.eccweizhi.androidinstantapptemplate.base.network.NetworkThing
 import app.eccweizhi.androidinstantapptemplate.base.ui.App
@@ -16,4 +17,5 @@ interface SingletonComponent {
 
     fun circularLogTree(): CircularLogTree
     fun networkThing(): NetworkThing
+    fun context(): Context
 }

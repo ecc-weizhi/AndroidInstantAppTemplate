@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_two_line_item_height"
+    android:background="?selectableItemBackground"
+    android:padding="@dimen/margin_normal">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/list_image_width"
+        android:layout_height="@dimen/list_image_height"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_image_margin"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minLines="1"
+        android:textColor="@color/black_87"
+        android:textSize="@dimen/list_title_text"
+        app:layout_constraintBottom_toTopOf="@+id/subtitleTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/subtitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_image_margin"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minLines="1"
+        android:textColor="@color/black_54"
+        android:textSize="@dimen/list_subtitle_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        tools:text="@tools:sample/lorem/random" />
+
+</android.support.constraint.ConstraintLayout>

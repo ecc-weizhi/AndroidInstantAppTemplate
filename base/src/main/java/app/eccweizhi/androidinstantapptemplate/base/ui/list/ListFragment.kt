@@ -3,23 +3,28 @@ package app.eccweizhi.androidinstantapptemplate.base.ui.list
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.eccweizhi.androidinstantapptemplate.base.R
-import app.eccweizhi.androidinstantapptemplate.base.ui.*
-import com.google.android.instantapps.InstantApps
+import app.eccweizhi.androidinstantapptemplate.base.ui.App
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
+import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.ui.list.groupie.AdapterWrapper
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
 import javax.inject.Inject
 
 
 class ListFragment : BaseFragment(),
         Mvp.View,
-        View.OnClickListener {
+        AdapterWrapper.Listener {
     @Inject
     lateinit var presenter: Mvp.Presenter
+    @Inject
+    lateinit var adapterWrapper: AdapterWrapper
     var fragmentListener: FragmentListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +44,9 @@ class ListFragment : BaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.featureOneButton.setOnClickListener(this)
-        view.featureTwoButton.setOnClickListener(this)
 
-        packageIdText.text = "package: $context?.applicationContext?.packageName"
-        isInstantAppText.text = "isInstantApp: ${InstantApps.isInstantApp(context!!)}"
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapterWrapper.adapter
     }
 
     override fun onAttach(context: Context) {
@@ -60,15 +63,36 @@ class ListFragment : BaseFragment(),
         super.onDetach()
     }
 
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.featureOneButton -> fragmentListener?.performAction(FRAGMENT_TAG,
-                    FragmentListener.Action.Navigate,
-                    ScreenIdentifier.URI_FEATURE_ONE)
-            R.id.featureTwoButton -> fragmentListener?.performAction(FRAGMENT_TAG,
-                    FragmentListener.Action.Navigate,
-                    ScreenIdentifier.URI_FEATURE_TWO)
-        }
+    override fun onStart() {
+        super.onStart()
+        adapterWrapper.listener = this
+    }
+
+    override fun onStop() {
+        adapterWrapper.listener = this
+        super.onStop()
+    }
+
+    override fun onSpringClick() {
+        presenter.onSpringClick()
+    }
+
+    override fun onSummerClick() {
+        presenter.onSummerClick()
+    }
+
+    override fun onAutumnClick() {
+        presenter.onAutumnClick()
+    }
+
+    override fun onWinterClick() {
+        presenter.onWinterClick()
+    }
+
+    override fun navigateTo(screenIdentifier: String) {
+        fragmentListener?.performAction(FRAGMENT_TAG,
+                FragmentListener.Action.Navigate,
+                screenIdentifier)
     }
 
     companion object {

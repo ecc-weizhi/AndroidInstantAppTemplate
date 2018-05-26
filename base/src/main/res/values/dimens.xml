@@ -15,4 +15,15 @@
 
     <dimen name="action_bar_text_size">18sp</dimen>
 
+    <!--material list spec-->
+    <dimen name="list_image_height">40dp</dimen>
+    <dimen name="list_image_width">40dp</dimen>
+    <dimen name="list_one_line_item_height">56dp</dimen>
+    <dimen name="list_two_line_item_height">72dp</dimen>
+    <dimen name="list_three_line_item_height">88dp</dimen>
+    <dimen name="list_image_margin">@dimen/margin_normal</dimen>
+    <dimen name="list_title_text">@dimen/text_large</dimen>
+    <dimen name="list_subtitle_text">@dimen/text_normal</dimen>
+
+
 </resources>

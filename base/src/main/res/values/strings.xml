@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">AndroidInstantAppTemplate</string>
+
+    <!--list-->
+    <string name="list_list_spring_title">Spring</string>
+    <string name="list_list_summer_title">Summer</string>
+    <string name="list_list_autumn_title">Autumn</string>
+    <string name="list_list_winter_title">Winter</string>
+    <string name="list_list_spring_subtitle">Blossom by blossom the spring begins</string>
+    <string name="list_list_summer_subtitle">Do what we can, summer will have its flies</string>
+    <string name="list_list_autumn_subtitle">Autumn is a second spring when every leaf is a flower</string>
+    <string name="list_list_winter_subtitle">In the depth of winter I finally learned that there was in me an invincible summer</string>
+
+
 </resources>

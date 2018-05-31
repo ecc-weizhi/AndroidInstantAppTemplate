@@ -1,6 +1,6 @@
 package app.eccweizhi.androidinstantapptemplate.base.di
 
-import app.eccweizhi.androidinstantapptemplate.base.logger.CircularLog
+import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class LoggingModule {
     @Provides
     @Singleton
-    fun providesCircularLog(): CircularLog {
-        return CircularLog(30)
+    fun providesAppLog(): AppLog {
+        return AppLog(30)
     }
 }

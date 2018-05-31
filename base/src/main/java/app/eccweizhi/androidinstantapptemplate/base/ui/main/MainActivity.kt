@@ -6,15 +6,18 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.support.v7.widget.LinearLayoutManager
 import app.eccweizhi.androidinstantapptemplate.base.R
+import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
 import app.eccweizhi.androidinstantapptemplate.base.ui.App
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragment
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
+import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -25,8 +28,11 @@ class MainActivity : AppCompatActivity(),
 
     @Inject
     protected lateinit var presenter: Mvp.Presenter
+    @Inject
+    protected lateinit var appLog: AppLog
 
     private lateinit var backstackKeys: ArrayList<Key>
+    private val logSection = Section()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         DaggerMainActivityComponent.builder()
@@ -36,12 +42,15 @@ class MainActivity : AppCompatActivity(),
                 .inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupLogView()
+
+        appLog.subject
+                .map { it.map { LogItem(it.id, it.tag, it.content) } }
+                .subscribe { logSection.update(it) }
 
         setSupportActionBar(activityToolbar)
 
         if (savedInstanceState == null) {
-            Timber.i("onCreate no save instance")
-
             backstackKeys = intent.getParcelableArrayListExtra<Key>(EXTRA_KEY_BACKSTACK_KEYS)
                     ?: arrayListOf()
 
@@ -49,16 +58,15 @@ class MainActivity : AppCompatActivity(),
                 backstackKeys.add(ListFragment.MainKey())
             }
 
+            appLog.log(LOG_TAG, "onCreate. hasSaveState: false. $backstackKeys")
             goToFragment(backstackKeys.last())
         } else {
             backstackKeys = savedInstanceState.getParcelableArrayList<Key>(EXTRA_KEY_BACKSTACK_KEYS)
                     ?: arrayListOf()
+
+            appLog.log(LOG_TAG, "onCreate. hasSaveState: true. $backstackKeys")
             goToFragment(backstackKeys.last())
-
-            Timber.i("onCreate has save instance")
         }
-
-        Timber.i("oncreate backstack: %s", backstackKeys)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -72,8 +80,7 @@ class MainActivity : AppCompatActivity(),
         val newIntentBackstackKeys = intent.getParcelableArrayListExtra<Key>(EXTRA_KEY_BACKSTACK_KEYS)
         backstackKeys.addAll(newIntentBackstackKeys)
 
-        Toast.makeText(this, "onNewIntent: ${backstackKeys}", Toast.LENGTH_LONG).show()
-        Timber.i("onNewIntent: %s", backstackKeys)
+        appLog.log(LOG_TAG, "onNewIntent: $backstackKeys")
 
         goToFragment(backstackKeys.last())
     }
@@ -132,7 +139,15 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
+    private fun setupLogView() {
+        logRecyclerView.layoutManager = LinearLayoutManager(this)
+        val groupAdapter = GroupAdapter<ViewHolder>()
+        groupAdapter.add(logSection)
+        logRecyclerView.adapter = groupAdapter
+    }
+
     private fun goToFragment(key: Key) {
+        appLog.log(LOG_TAG, "goTo $key")
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, key.newFragment(), key.fragmentTag)
                 .commit()
@@ -143,6 +158,7 @@ class MainActivity : AppCompatActivity(),
          * Intent extra key for [ArrayList] of [Key]. This [ArrayList] is our fragment backstack
          */
         const val EXTRA_KEY_BACKSTACK_KEYS = "BACKSTACK_KEYS"
+        const val LOG_TAG = "MainActivity"
 
         fun startWith(activity: Activity, vararg keys: Key) {
             val intent = Intent(activity, MainActivity::class.java).apply {

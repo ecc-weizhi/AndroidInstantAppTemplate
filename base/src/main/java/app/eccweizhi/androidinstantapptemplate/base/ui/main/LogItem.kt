@@ -17,5 +17,4 @@ class LogItem(id: Long,
     }
 
     override fun getLayout(): Int = R.layout.item_log
-
 }

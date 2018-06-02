@@ -9,7 +9,4 @@ import dagger.Component
         dependencies = [SingletonComponent::class])
 interface ListFragmentComponent {
     fun inject(listFragment: ListFragment)
-
-    fun MvpView(): Mvp.View
-    fun MvpPresenter(): Mvp.Presenter
 }

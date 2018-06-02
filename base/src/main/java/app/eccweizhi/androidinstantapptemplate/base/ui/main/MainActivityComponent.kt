@@ -9,7 +9,4 @@ import dagger.Component
         dependencies = [SingletonComponent::class])
 interface MainActivityComponent {
     fun inject(mainActivity: MainActivity)
-
-    fun MvpView(): Mvp.View
-    fun MvpPresenter(): Mvp.Presenter
 }

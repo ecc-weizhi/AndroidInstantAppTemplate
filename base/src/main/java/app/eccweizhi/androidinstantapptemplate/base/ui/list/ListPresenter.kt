@@ -1,12 +1,15 @@
 package app.eccweizhi.androidinstantapptemplate.base.ui.list
 
-import app.eccweizhi.androidinstantapptemplate.base.network.NetworkThing
+import app.eccweizhi.androidinstantapptemplate.base.network.NetworkService
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import javax.inject.Inject
 
 
-class ListPresenter @Inject constructor(private val view: Mvp.View,
-                                        private val networkThing: NetworkThing) : Mvp.Presenter {
+@ListFragmentScope
+class ListPresenter @Inject constructor(
+        private val view: Mvp.View,
+        private val networkService: NetworkService
+) : Mvp.Presenter {
     override fun onSpringClick() {
         view.navigateTo(ScreenIdentifier.URI_FEATURE_SPRING)
     }

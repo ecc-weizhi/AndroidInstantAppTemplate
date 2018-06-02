@@ -5,10 +5,10 @@ import java.util.*
 import java.util.concurrent.atomic.AtomicLong
 
 
-class AppLog(val capacity: Int = 100) {
+class AppLog(private val capacity: Int = 100) {
+    val subject: BehaviorSubject<List<Message>> = BehaviorSubject.createDefault(emptyList)
     private val list = LinkedList<Message>()
-    val subject = BehaviorSubject.createDefault(emptyList)
-    private val ID_COUNTER = AtomicLong(0)
+    private val idCounter = AtomicLong(0)
 
     init {
         if (capacity == 0) throw IllegalArgumentException("Capacity must be more than 0")
@@ -16,7 +16,7 @@ class AppLog(val capacity: Int = 100) {
 
     fun log(tag: String, message: String) {
         val size = list.size
-        list.offerLast(Message(ID_COUNTER.incrementAndGet(), tag, message))
+        list.offerLast(Message(idCounter.incrementAndGet(), tag, message))
         if (size == capacity) {
             list.pollFirst()
         }

@@ -8,11 +8,13 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.item_season.*
 
 
-class Season private constructor(id: Long,
-                                 private val title: CharSequence,
-                                 private val subtitle: CharSequence,
-                                 private val imgUrl: String,
-                                 private val requestManager: RequestManager) : Item(id) {
+class Season private constructor(
+        id: Long,
+        private val title: CharSequence,
+        private val subtitle: CharSequence,
+        private val imgUrl: String,
+        private val requestManager: RequestManager
+) : Item(id) {
     override fun getLayout() = R.layout.item_season
 
     override fun bind(viewHolder: ViewHolder, position: Int) {

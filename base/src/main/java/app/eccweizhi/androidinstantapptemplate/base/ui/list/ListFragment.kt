@@ -28,11 +28,7 @@ class ListFragment : BaseFragment(),
     var fragmentListener: FragmentListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DaggerListFragmentComponent.builder()
-                .singletonComponent(App.INSTANCE.component)
-                .listFragmentModule(ListFragmentModule(this))
-                .build()
-                .inject(this)
+        getListFragmentComponent().inject(this)
         super.onCreate(savedInstanceState)
     }
 
@@ -93,6 +89,22 @@ class ListFragment : BaseFragment(),
         fragmentListener?.performAction(FRAGMENT_TAG,
                 FragmentListener.Action.Navigate,
                 screenIdentifier)
+    }
+
+    private fun getListFragmentComponent(): ListFragmentComponent {
+        val componentKey = ListFragmentComponent::class.java.canonicalName
+        val cached = App.INSTANCE.componentMap[componentKey]
+
+        val component: ListFragmentComponent = if (cached == null) {
+            val newComponent = DaggerListFragmentComponent.builder()
+                    .listFragmentModule(ListFragmentModule(this))
+                    .build()
+            App.INSTANCE.componentMap[componentKey] = newComponent
+            newComponent
+        } else {
+            cached as ListFragmentComponent
+        }
+        return component
     }
 
     companion object {

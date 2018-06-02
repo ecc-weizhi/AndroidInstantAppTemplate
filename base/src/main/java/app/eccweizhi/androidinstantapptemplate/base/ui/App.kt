@@ -10,24 +10,36 @@ import timber.log.Timber
 
 
 class App : Application() {
-    lateinit var component: SingletonComponent
-        private set
+    val componentMap = mutableMapOf<String, Any>()
 
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
 
-        component = DaggerSingletonComponent
-                .builder()
-                .appModule(AppModule(this))
-                .loggingModule(LoggingModule())
-                .build()
-        component.inject(this)
+        val singletonComponent = getSingletonComponent()
+        singletonComponent.inject(this)
 
         // logging should always be the first thing to be setup
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+    }
+
+    private fun getSingletonComponent(): SingletonComponent {
+        val componentKey = SingletonComponent::class.java.canonicalName
+        val cached = componentMap[componentKey]
+
+        val component: SingletonComponent = if (cached == null) {
+            val newComponent = DaggerSingletonComponent.builder()
+                    .appModule(AppModule(this))
+                    .loggingModule(LoggingModule())
+                    .build()
+            componentMap[componentKey] = newComponent
+            newComponent
+        } else {
+            cached as SingletonComponent
+        }
+        return component
     }
 
     companion object {

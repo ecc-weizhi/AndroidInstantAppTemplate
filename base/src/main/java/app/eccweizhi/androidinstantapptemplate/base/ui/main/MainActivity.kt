@@ -35,11 +35,7 @@ class MainActivity : AppCompatActivity(),
     private val logSection = Section()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DaggerMainActivityComponent.builder()
-                .singletonComponent(App.INSTANCE.component)
-                .mainActivityModule(MainActivityModule(this))
-                .build()
-                .inject(this)
+        getMainActivityComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupLogView()
@@ -100,6 +96,22 @@ class MainActivity : AppCompatActivity(),
             backstackKeys.removeAt(backstackKeys.lastIndex)
             goToFragment(backstackKeys.last())
         }
+    }
+
+    private fun getMainActivityComponent(): MainActivityComponent {
+        val componentKey = MainActivityComponent::class.java.canonicalName
+        val cached = App.INSTANCE.componentMap[componentKey]
+
+        val component: MainActivityComponent = if (cached == null) {
+            val newComponent = DaggerMainActivityComponent.builder()
+                    .mainActivityModule(MainActivityModule(this))
+                    .build()
+            App.INSTANCE.componentMap[componentKey] = newComponent
+            newComponent
+        } else {
+            cached as MainActivityComponent
+        }
+        return component
     }
 
     private fun performNavigate(identifier: String) {

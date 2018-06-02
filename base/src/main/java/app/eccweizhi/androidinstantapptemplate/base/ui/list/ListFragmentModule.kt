@@ -10,16 +10,19 @@ import dagger.Provides
 @Module
 class ListFragmentModule(private val listFragment: ListFragment) {
 
+    @ListFragmentScope
     @Provides
     fun providesView(): Mvp.View {
         return listFragment
     }
 
+    @ListFragmentScope
     @Provides
     fun providesPresenter(listPresenter: ListPresenter): Mvp.Presenter {
         return listPresenter
     }
 
+    @ListFragmentScope
     @Provides
     fun providesRequestManager(): RequestManager {
         return Glide.with(listFragment)

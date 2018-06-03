@@ -1,15 +1,14 @@
-package app.eccweizhi.androidinstantapptemplate.base.di
+package app.eccweizhi.androidinstantapptemplate.base.di.application
 
 import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 
 @Module
 class LoggingModule {
     @Provides
-    @Singleton
+    @ApplicationScope
     fun providesAppLog(): AppLog {
         return AppLog(30)
     }

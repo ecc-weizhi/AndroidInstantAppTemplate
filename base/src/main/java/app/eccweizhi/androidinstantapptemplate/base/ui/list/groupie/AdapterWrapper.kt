@@ -2,16 +2,13 @@ package app.eccweizhi.androidinstantapptemplate.base.ui.list.groupie
 
 import android.content.Context
 import android.view.View
-import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragmentScope
 import com.bumptech.glide.RequestManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.ViewHolder
-import javax.inject.Inject
 
-@ListFragmentScope
-class AdapterWrapper @Inject constructor(
+class AdapterWrapper(
         context: Context,
         requestManager: RequestManager
 ) : OnItemClickListener {

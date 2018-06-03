@@ -1,14 +1,30 @@
 package app.eccweizhi.androidinstantapptemplate.spring.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
 import app.eccweizhi.androidinstantapptemplate.base.ui.main.MainActivity
+import app.eccweizhi.androidinstantapptemplate.spring.di.DaggerSpringComponent
+import app.eccweizhi.androidinstantapptemplate.spring.ui.springone.SpringOneFragment
+import javax.inject.Inject
 
 
-class SpringActivity : AppCompatActivity() {
+class SpringActivity : BaseActivity() {
+    @Inject
+    protected lateinit var springStuff: SpringStuff
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        DaggerSpringComponent.builder()
+                .screenComponent(screenComponent)
+                .build()
+                .inject(this)
         super.onCreate(savedInstanceState)
+
+        appLog.log(LOG_TAG, "onCreate")
         MainActivity.startWith(this,
-                SpringFragment.SpringKey("foo"))
+                SpringOneFragment.Key("foo"))
+    }
+
+    companion object {
+        const val LOG_TAG = "SpringActivity"
     }
 }

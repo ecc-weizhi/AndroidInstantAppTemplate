@@ -2,11 +2,9 @@ package app.eccweizhi.androidinstantapptemplate.base.ui.list
 
 import app.eccweizhi.androidinstantapptemplate.base.network.NetworkService
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
-import javax.inject.Inject
 
 
-@ListFragmentScope
-class ListPresenter @Inject constructor(
+class ListPresenter(
         private val view: Mvp.View,
         private val networkService: NetworkService
 ) : Mvp.Presenter {

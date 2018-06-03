@@ -1,9 +1,9 @@
-package app.eccweizhi.androidinstantapptemplate.base.ui.main
+package app.eccweizhi.androidinstantapptemplate.spring.ui.springtwo
 
 import app.eccweizhi.androidinstantapptemplate.base.network.NetworkService
 
 
-class MainPresenter(
+class SpringTwoPresenter(
         private val view: Mvp.View,
         private val networkService: NetworkService
 ) : Mvp.Presenter {

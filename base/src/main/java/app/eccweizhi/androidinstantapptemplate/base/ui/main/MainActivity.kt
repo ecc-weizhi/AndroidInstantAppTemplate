@@ -5,11 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import app.eccweizhi.androidinstantapptemplate.base.R
-import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
-import app.eccweizhi.androidinstantapptemplate.base.ui.App
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
@@ -19,30 +17,30 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(),
+class MainActivity : BaseActivity(),
         Mvp.View,
         FragmentListener {
 
-    @Inject
-    protected lateinit var presenter: Mvp.Presenter
-    @Inject
-    protected lateinit var appLog: AppLog
-
+    private lateinit var presenter: Mvp.Presenter
     private lateinit var backstackKeys: ArrayList<Key>
     private val logSection = Section()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        getMainActivityComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        presenter = MainPresenter(this, networkService)
+
         setupLogView()
 
         appLog.subject
                 .map { it.map { LogItem(it.id, it.tag, it.content) } }
-                .subscribe { logSection.update(it) }
+                .subscribe {
+                    logSection.update(it)
+                    logRecyclerView.smoothScrollToPosition(logRecyclerView.adapter.itemCount)
+                }
 
         setSupportActionBar(activityToolbar)
 
@@ -96,22 +94,6 @@ class MainActivity : AppCompatActivity(),
             backstackKeys.removeAt(backstackKeys.lastIndex)
             goToFragment(backstackKeys.last())
         }
-    }
-
-    private fun getMainActivityComponent(): MainActivityComponent {
-        val componentKey = MainActivityComponent::class.java.canonicalName
-        val cached = App.INSTANCE.componentMap[componentKey]
-
-        val component: MainActivityComponent = if (cached == null) {
-            val newComponent = DaggerMainActivityComponent.builder()
-                    .mainActivityModule(MainActivityModule(this))
-                    .build()
-            App.INSTANCE.componentMap[componentKey] = newComponent
-            newComponent
-        } else {
-            cached as MainActivityComponent
-        }
-        return component
     }
 
     private fun performNavigate(identifier: String) {

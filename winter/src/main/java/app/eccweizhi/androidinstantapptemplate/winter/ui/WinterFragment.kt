@@ -1,6 +1,5 @@
 package app.eccweizhi.androidinstantapptemplate.winter.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
-import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.winter.R
 import kotlinx.android.parcel.Parcelize
 
 
 class WinterFragment : BaseFragment() {
-    var fragmentListener: FragmentListener? = null
-
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -24,20 +20,6 @@ class WinterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            fragmentListener = context as FragmentListener
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement FragmentListener")
-        }
-    }
-
-    override fun onDetach() {
-        fragmentListener = null
-        super.onDetach()
     }
 
     companion object {

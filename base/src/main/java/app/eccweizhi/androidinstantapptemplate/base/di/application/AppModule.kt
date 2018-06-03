@@ -1,17 +1,16 @@
-package app.eccweizhi.androidinstantapptemplate.base.di
+package app.eccweizhi.androidinstantapptemplate.base.di.application
 
-import android.content.Context
+import android.app.Application
 import app.eccweizhi.androidinstantapptemplate.base.ui.App
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 
 @Module
 class AppModule(private val app: App) {
-    @Singleton
+    @ApplicationScope
     @Provides
-    fun provideContext(): Context {
+    fun provideContext(): Application {
         return app
     }
 }

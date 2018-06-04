@@ -27,6 +27,7 @@ class SpringOneFragment : BaseFragment(),
                 .build()
                 .inject(this)
         super.onCreate(savedInstanceState)
+        appLog.log(LOG_TAG, "onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -37,6 +38,7 @@ class SpringOneFragment : BaseFragment(),
     }
 
     companion object {
+        private const val LOG_TAG = "SpringOneFragment"
         const val FRAGMENT_TAG = "SpringOneFragment"
         private const val ARG_PARAM_1 = "param1"
 

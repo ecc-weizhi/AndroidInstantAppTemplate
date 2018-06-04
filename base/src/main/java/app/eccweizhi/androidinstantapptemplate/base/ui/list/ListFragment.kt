@@ -63,12 +63,14 @@ class ListFragment : BaseFragment(),
     }
 
     override fun navigateTo(screenIdentifier: String) {
+        appLog.log(LOG_TAG, "navigateTo $screenIdentifier")
         fragmentListener?.performAction(FRAGMENT_TAG,
                 FragmentListener.Action.Navigate,
                 screenIdentifier)
     }
 
     companion object {
+        private const val LOG_TAG = "ListFragment"
         const val FRAGMENT_TAG = "ListFragment"
 
         @JvmStatic

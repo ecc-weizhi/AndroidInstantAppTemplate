@@ -4,22 +4,27 @@
 
     <application>
         <activity android:name=".ui.AutumnActivity">
-            <intent-filter
-                android:autoVerify="true"
-                android:priority="1">
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
+                    android:scheme="https"
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:path="/autumn"
-                    android:scheme="https" />
+                    android:path="/autumn" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
+                    android:scheme="http"
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:path="/autumn"
-                    android:scheme="http" />
+                    android:path="/autumn" />
             </intent-filter>
         </activity>
     </application>

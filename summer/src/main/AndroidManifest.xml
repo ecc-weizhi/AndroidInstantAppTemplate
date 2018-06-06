@@ -4,22 +4,27 @@
 
     <application>
         <activity android:name=".ui.SummerActivity">
-            <intent-filter
-                android:autoVerify="true"
-                android:priority="1">
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
+                    android:scheme="https"
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:path="/summer"
-                    android:scheme="https" />
+                    android:path="/summer" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
+                    android:scheme="http"
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:path="/summer"
-                    android:scheme="http" />
+                    android:path="/summer" />
             </intent-filter>
         </activity>
     </application>

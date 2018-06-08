@@ -31,6 +31,8 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         screenComponent.inject(this)
         super.onCreate(savedInstanceState)
+        val versionCode = packageManager.getPackageInfo(packageName, 0).versionCode
+        title = "version code: $versionCode"
         appLog.log(javaClass.simpleName, "onCreate, taskId: $taskId")
     }
 }

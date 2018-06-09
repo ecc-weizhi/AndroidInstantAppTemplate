@@ -30,4 +30,4 @@ before_install:
   - chmod +x gradlew
 
 script:
-  - ./gradlew clean test connectedDebugAndroidTest build
+  - ./gradlew clean assembleDebug test connectedDebugAndroidTest

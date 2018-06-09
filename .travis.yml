@@ -26,9 +26,9 @@ android:
     - sys-img-armeabi-v7a-android-26
     - sys-img-armeabi-v7a-android-19
 
-    licenses:
-      - android-sdk-license-.+
-      - ".+"
+  licenses:
+    - android-sdk-license-.+
+    - ".+"
 
 before_install:
   - chmod +x gradlew

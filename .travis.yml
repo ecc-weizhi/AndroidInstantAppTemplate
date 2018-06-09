@@ -1,0 +1,27 @@
+language: android
+android:
+  components:
+    # To build your project with the SDK Platform Tools revision 24 or above, you need to define the
+    # following components
+    # Note that the tools section appears twice on purpose as it’s required to get the newest
+    # Android SDK tools.
+    - tools
+    - platform-tools
+    - tools
+
+    # The BuildTools version used by your project
+    - build-tools-27.0.3
+
+    # The SDK version used to compile your project
+    - android-27
+
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-27
+
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-armeabi-v7a-android-26
+    - sys-img-armeabi-v7a-android-19

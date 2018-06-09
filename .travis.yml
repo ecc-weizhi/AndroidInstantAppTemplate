@@ -32,6 +32,8 @@ android:
 
 before_install:
   - chmod +x gradlew
+#  https://github.com/travis-ci/travis-ci/issues/8874
+  - yes | sdkmanager "platforms;android-26"
 
 script:
   - ./gradlew clean assembleDebug test connectedDebugAndroidTest

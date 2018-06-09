@@ -27,8 +27,8 @@ ext {
     compileSdkVersion = 27
     minSdkVersion = 19
     targetSdkVersion = 27
-    versionCode = 12
-    versionName = "0.0.12"
+    versionCode = 13
+    versionName = "0.0.13"
 
     // dependencies version
     constraintVersion = '1.1.0'
@@ -39,6 +39,7 @@ ext {
     instantAppVersion = '1.1.0'
     junitVersion = '4.12'
     kotlinVersion = "$kotlin_version"
+    multiDexVersion = '1.0.3'
     retrofit2Version = '2.3.0'
     rxandroidVersion = '2.0.1'
     rxjavaVersion = '2.1.7'

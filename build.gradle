@@ -30,6 +30,12 @@ ext {
     versionCode = 13
     versionName = "0.0.13"
 
+    // signing config
+    keyStore = "stub"
+    keyStorePassword = "stub"
+    keyAlias = "stub"
+    keyAliasPassword = "stub"
+
     // dependencies version
     constraintVersion = '1.1.0'
     dagger2Version = '2.13'
@@ -46,6 +52,15 @@ ext {
     supportVersion = '27.1.1'
     testVersion = '1.0.1'
     timberVersion = '4.5.1'
+}
+
+def props = new Properties()
+if (rootProject.file("release.properties").exists()) {
+    props.load(new FileInputStream(rootProject.file("release.properties")))
+    rootProject.keyStore = props.keyStore
+    rootProject.keyStorePassword = props.keyStorePassword
+    rootProject.keyAlias = props.keyAlias
+    rootProject.keyAliasPassword = props.keyAliasPassword
 }
 
 task clean(type: Delete) {

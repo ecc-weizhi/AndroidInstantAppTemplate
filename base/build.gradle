@@ -38,12 +38,12 @@ android {
     }
 }
 
-def props = new Properties()
-props.load(new FileInputStream(rootProject.file("release.properties")))
-android.signingConfigs.release.storeFile rootProject.file(props.keyStore)
-android.signingConfigs.release.storePassword props.keyStorePassword
-android.signingConfigs.release.keyAlias props.keyAlias
-android.signingConfigs.release.keyPassword props.keyAliasPassword
+if(rootProject.file(rootProject.keyStore).exists()){
+    android.signingConfigs.release.storeFile rootProject.file(rootProject.keyStore)
+    android.signingConfigs.release.storePassword rootProject.keyStorePassword
+    android.signingConfigs.release.keyAlias rootProject.keyAlias
+    android.signingConfigs.release.keyPassword rootProject.keyAliasPassword
+}
 
 dependencies {
     api "com.google.android.instantapps:instantapps:$rootProject.instantAppVersion"

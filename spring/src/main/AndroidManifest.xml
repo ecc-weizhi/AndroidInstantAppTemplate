@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.eccweizhi.androidinstantapptemplate.spring">
 
-    <application>
+    <application android:name="app.eccweizhi.androidinstantapptemplate.base.ui.App">
         <activity android:name=".ui.SpringActivity">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />

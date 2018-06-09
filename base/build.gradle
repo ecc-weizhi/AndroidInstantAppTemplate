@@ -25,7 +25,7 @@ android {
     }
 
     buildTypes {
-        debug{
+        debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             multiDexEnabled true
@@ -38,7 +38,7 @@ android {
     }
 }
 
-if(rootProject.file(rootProject.keyStore).exists()){
+if (rootProject.file(rootProject.keyStore).exists()) {
     android.signingConfigs.release.storeFile rootProject.file(rootProject.keyStore)
     android.signingConfigs.release.storePassword rootProject.keyStorePassword
     android.signingConfigs.release.keyAlias rootProject.keyAlias
@@ -67,7 +67,8 @@ dependencies {
 
     api "com.google.dagger:dagger:$rootProject.dagger2Version"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-    api "com.google.dagger:dagger-android-support:$rootProject.dagger2Version" // if you use the support libraries
+    api "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+    // if you use the support libraries
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
 
     api "com.jakewharton.timber:timber:$rootProject.timberVersion"

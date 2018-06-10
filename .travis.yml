@@ -1,4 +1,13 @@
 language: android
+
+env:
+  global:
+    - ANDROID_API_LEVEL=27
+    - EMULATOR_API_LEVEL=27
+    - ANDROID_BUILD_TOOLS_VERSION=27.0.3
+    - ANDROID_ABI=armeabi-v7a
+    - ANDROID_TAG=google_apis
+
 android:
   components:
     # To build your project with the SDK Platform Tools revision 24 or above, you need to define the
@@ -10,22 +19,30 @@ android:
     - tools
 
     # The BuildTools version used by your project
-    - build-tools-27.0.3
+    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
 
     # The SDK version used to compile your project
-    - android-27
+    - android-$ANDROID_API_LEVEL
+    - android-$EMULATOR_API_LEVEL
+
+    # For Google APIs
+    - addon-google_apis-google-$ANDROID_API_LEVEL
+    - addon-google_apis-google-$EMULATOR_API_LEVEL
+
+    # Google Play Services
+    - extra-google-google_play_services
+
+    # Support library
+    - extra-android-support
 
     # Additional components
-    - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - addon-google_apis-google-27
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-26
-    - sys-img-armeabi-v7a-android-22
-    - sys-img-armeabi-v7a-android-19
+    - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
+    - sys-img-armeabi-v7a-google_apis-$EMULATOR_API_LEVEL
 
   licenses:
     - android-sdk-license-.+
@@ -39,7 +56,7 @@ before_install:
 # Emulator Management: Create, Start and Wait
 before_script:
   - android list targets
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t "android-"$EMULATOR_API_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &

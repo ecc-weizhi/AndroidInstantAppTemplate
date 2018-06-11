@@ -1,5 +1,8 @@
 language: android
-
+# Turn off caching to avoid any caching problems
+cache: false
+# Use the Travis Container-Based Infrastructure
+sudo: false
 env:
   global:
     - ANDROID_API_LEVEL=25
@@ -7,6 +10,7 @@ env:
     - ANDROID_BUILD_TOOLS_VERSION=25.0.3
     - ANDROID_ABI=arm64-v8a
     - ANDROID_TAG=google_apis
+    - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
 
 android:
   components:

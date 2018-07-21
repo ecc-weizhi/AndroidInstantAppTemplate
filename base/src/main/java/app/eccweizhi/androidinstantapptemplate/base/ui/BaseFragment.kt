@@ -9,12 +9,14 @@ import app.eccweizhi.androidinstantapptemplate.base.di.screen.GlideModule
 import app.eccweizhi.androidinstantapptemplate.base.di.screen.ScreenComponent
 import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
 import app.eccweizhi.androidinstantapptemplate.base.network.NetworkService
+import app.eccweizhi.androidinstantapptemplate.base.persistence.Store
 import com.bumptech.glide.RequestManager
-import com.google.android.instantapps.InstantApps
 import javax.inject.Inject
 
 
 abstract class BaseFragment : Fragment() {
+    @Inject
+    protected lateinit var store: Store
     @Inject
     protected lateinit var appLog: AppLog
     @Inject
@@ -34,7 +36,6 @@ abstract class BaseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         screenComponent.inject(this)
         super.onCreate(savedInstanceState)
-        appLog.log(javaClass.simpleName, "isInstantApp: ${InstantApps.isInstantApp(context!!)}")
     }
 
     override fun onAttach(context: Context) {

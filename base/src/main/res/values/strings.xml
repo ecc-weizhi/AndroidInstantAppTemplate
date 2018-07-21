@@ -11,5 +11,7 @@
     <string name="list_list_autumn_subtitle">Autumn is a second spring when every leaf is a flower</string>
     <string name="list_list_winter_subtitle">In the depth of winter I finally learned that there was in me an invincible summer</string>
 
+    <!--menu-->
+    <string name="menu_action_settings">Settings</string>
 
 </resources>

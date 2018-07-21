@@ -22,6 +22,7 @@ class SpringActivity : BaseActivity() {
         appLog.log(LOG_TAG, "onCreate")
         MainActivity.startWith(this,
                 SpringOneFragment.Key("foo"))
+        finish()
     }
 
     companion object {

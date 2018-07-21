@@ -2,11 +2,11 @@ package app.eccweizhi.androidinstantapptemplate.spring.ui.springone
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
+import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.spring.R
 import app.eccweizhi.androidinstantapptemplate.spring.di.DaggerSpringComponent
 import app.eccweizhi.androidinstantapptemplate.spring.ui.SpringStuff
@@ -27,7 +27,25 @@ class SpringOneFragment : BaseFragment(),
                 .build()
                 .inject(this)
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         appLog.log(LOG_TAG, "onCreate")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu,
+                                     inflater: MenuInflater) {
+        inflater.inflate(app.eccweizhi.androidinstantapptemplate.base.R.menu.menu_list, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                fragmentListener?.performAction(FRAGMENT_TAG,
+                        FragmentListener.Action.Navigate,
+                        ScreenIdentifier.SETTINGS)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater,

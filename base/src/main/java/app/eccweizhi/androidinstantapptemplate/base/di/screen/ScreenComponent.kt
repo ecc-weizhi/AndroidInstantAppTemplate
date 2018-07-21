@@ -4,6 +4,8 @@ import android.content.Context
 import app.eccweizhi.androidinstantapptemplate.base.di.application.ApplicationComponent
 import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
 import app.eccweizhi.androidinstantapptemplate.base.network.NetworkService
+import app.eccweizhi.androidinstantapptemplate.base.persistence.SettingsPref
+import app.eccweizhi.androidinstantapptemplate.base.persistence.Store
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import com.bumptech.glide.RequestManager
@@ -21,4 +23,6 @@ interface ScreenComponent {
     fun appLog(): AppLog
     fun requestManger(): RequestManager
     fun context(): Context
+    fun store(): Store
+    fun settingPref(): SettingsPref
 }

@@ -6,15 +6,18 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
 import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragment
+import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -26,6 +29,7 @@ class MainActivity : BaseActivity(),
     private lateinit var presenter: Mvp.Presenter
     private lateinit var backstackKeys: ArrayList<Key>
     private val logSection = Section()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +39,6 @@ class MainActivity : BaseActivity(),
 
         setupLogView()
 
-        appLog.subject
-                .map { it.map { LogItem(it.id, it.tag, it.content) } }
-                .subscribe {
-                    logSection.update(it)
-                    logRecyclerView.smoothScrollToPosition(logRecyclerView.adapter.itemCount)
-                }
-
         setSupportActionBar(activityToolbar)
 
         if (savedInstanceState == null) {
@@ -49,7 +46,7 @@ class MainActivity : BaseActivity(),
                     ?: arrayListOf()
 
             if (backstackKeys.isEmpty()) {
-                backstackKeys.add(ListFragment.MainKey())
+                backstackKeys.add(ListFragment.Key())
             }
 
             appLog.log(LOG_TAG, "onCreate. hasSaveState: false. $backstackKeys")
@@ -61,6 +58,11 @@ class MainActivity : BaseActivity(),
             appLog.log(LOG_TAG, "onCreate. hasSaveState: true. $backstackKeys")
             goToFragment(backstackKeys.last())
         }
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.clear()
+        super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -130,6 +132,12 @@ class MainActivity : BaseActivity(),
 
                 startActivity(newIntent)
             }
+            ScreenIdentifier.SETTINGS -> {
+                startWith(this, SettingsFragment.Key())
+            }
+            else -> {
+                throw NotImplementedError()
+            }
         }
     }
 
@@ -138,6 +146,20 @@ class MainActivity : BaseActivity(),
         val groupAdapter = GroupAdapter<ViewHolder>()
         groupAdapter.add(logSection)
         logRecyclerView.adapter = groupAdapter
+
+        val logDisposable = appLog.subject
+                .map { it.map { LogItem(it.id, it.tag, it.content) } }
+                .subscribe {
+                    logSection.update(it)
+                    logRecyclerView.smoothScrollToPosition(logRecyclerView.adapter.itemCount)
+                }
+        compositeDisposable.add(logDisposable)
+
+        val showLogDisposable = store.readSettingsShowLog()
+                .subscribe {
+                    logRecyclerView.visibility = if (it) View.VISIBLE else View.GONE
+                }
+        compositeDisposable.add(showLogDisposable)
     }
 
     private fun goToFragment(key: Key) {
@@ -165,7 +187,6 @@ class MainActivity : BaseActivity(),
                 putExtra(EXTRA_KEY_BACKSTACK_KEYS, keyStack)
             }
             activity.startActivity(intent)
-            activity.finish()
         }
     }
 }

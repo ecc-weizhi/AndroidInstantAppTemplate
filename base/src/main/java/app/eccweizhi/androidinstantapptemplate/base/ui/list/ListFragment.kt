@@ -3,13 +3,12 @@ package app.eccweizhi.androidinstantapptemplate.base.ui.list
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.groupie.AdapterWrapper
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -20,6 +19,28 @@ class ListFragment : BaseFragment(),
         AdapterWrapper.Listener {
     private lateinit var adapterWrapper: AdapterWrapper
     private lateinit var presenter: Mvp.Presenter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu,
+                                     inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_list, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                fragmentListener?.performAction(FRAGMENT_TAG,
+                        FragmentListener.Action.Navigate,
+                        ScreenIdentifier.SETTINGS)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -80,7 +101,7 @@ class ListFragment : BaseFragment(),
     }
 
     @Parcelize
-    data class MainKey(val clazz: String) : BaseKey() {
+    data class Key(val clazz: String) : BaseKey() {
         constructor() : this(FRAGMENT_TAG)
 
         override fun createFragment(): Fragment = newInstance()

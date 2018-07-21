@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_normal">
+
+    <TextView
+        android:id="@+id/isInstantAppHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small"
+        android:text="isInstantApp: "
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/isInstantAppText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintBottom_toBottomOf="@id/isInstantAppHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/isInstantAppHeader"
+        app:layout_constraintTop_toTopOf="@id/isInstantAppHeader"
+        tools:text="true" />
+
+    <TextView
+        android:id="@+id/versionCodeHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small"
+        android:text="Version code: "
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/isInstantAppHeader" />
+
+    <TextView
+        android:id="@+id/versionCodeText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintBottom_toBottomOf="@id/versionCodeHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/versionCodeHeader"
+        app:layout_constraintTop_toTopOf="@id/versionCodeHeader"
+        tools:text="13" />
+
+    <TextView
+        android:id="@+id/showLogHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small"
+        android:text="Show log"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/versionCodeHeader" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/showLogSwitch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/showLogHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/showLogHeader" />
+
+</android.support.constraint.ConstraintLayout>

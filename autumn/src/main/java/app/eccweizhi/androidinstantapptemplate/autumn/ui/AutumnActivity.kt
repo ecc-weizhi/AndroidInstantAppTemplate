@@ -9,6 +9,7 @@ class AutumnActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivity.startWith(this,
-                AutumnFragment.AutumnKey("foo"))
+                AutumnFragment.Key("foo"))
+        finish()
     }
 }

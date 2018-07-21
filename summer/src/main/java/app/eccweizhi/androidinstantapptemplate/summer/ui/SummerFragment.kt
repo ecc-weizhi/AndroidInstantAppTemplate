@@ -2,16 +2,38 @@ package app.eccweizhi.androidinstantapptemplate.summer.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
+import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
+import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.summer.R
 import kotlinx.android.parcel.Parcelize
 
 
 class SummerFragment : BaseFragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu,
+                                     inflater: MenuInflater) {
+        inflater.inflate(app.eccweizhi.androidinstantapptemplate.base.R.menu.menu_list, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                fragmentListener?.performAction(FRAGMENT_TAG,
+                        FragmentListener.Action.Navigate,
+                        ScreenIdentifier.SETTINGS)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -38,8 +60,8 @@ class SummerFragment : BaseFragment() {
     }
 
     @Parcelize
-    data class SummerKey(val clazz: String,
-                         val param1: String) : BaseKey() {
+    data class Key(val clazz: String,
+                   val param1: String) : BaseKey() {
         constructor(param1: String) : this(SummerFragment.FRAGMENT_TAG, param1)
 
         override fun createFragment(): Fragment = SummerFragment.newInstance(param1)

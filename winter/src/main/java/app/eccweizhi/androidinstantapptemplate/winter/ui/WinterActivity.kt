@@ -9,6 +9,7 @@ class WinterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivity.startWith(this,
-                WinterFragment.WinterKey("foo"))
+                WinterFragment.Key("foo"))
+        finish()
     }
 }

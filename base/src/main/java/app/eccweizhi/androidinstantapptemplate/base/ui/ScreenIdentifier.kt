@@ -10,5 +10,6 @@ class ScreenIdentifier {
         const val URI_FEATURE_SUMMER = "$SCHEME$HOST/summer"
         const val URI_FEATURE_AUTUMN = "$SCHEME$HOST/autumn"
         const val URI_FEATURE_WINTER = "$SCHEME$HOST/winter"
+        const val SETTINGS = "settings"
     }
 }

@@ -9,6 +9,7 @@ class SummerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivity.startWith(this,
-                SummerFragment.SummerKey("foo"))
+                SummerFragment.Key("foo"))
+        finish()
     }
 }

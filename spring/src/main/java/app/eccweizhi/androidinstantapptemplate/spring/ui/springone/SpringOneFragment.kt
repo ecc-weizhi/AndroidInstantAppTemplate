@@ -6,16 +6,19 @@ import android.view.*
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import app.eccweizhi.androidinstantapptemplate.spring.R
 import app.eccweizhi.androidinstantapptemplate.spring.di.DaggerSpringComponent
 import app.eccweizhi.androidinstantapptemplate.spring.ui.SpringStuff
+import app.eccweizhi.androidinstantapptemplate.spring.ui.springtwo.SpringTwoFragment
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.fragment_spring_one.*
 import javax.inject.Inject
 
 
 class SpringOneFragment : BaseFragment(),
-        Mvp.View {
+        Mvp.View,
+        View.OnClickListener {
     @Inject
     protected lateinit var springStuff: SpringStuff
 
@@ -40,8 +43,8 @@ class SpringOneFragment : BaseFragment(),
         return when (item.itemId) {
             R.id.action_settings -> {
                 fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.Navigate,
-                        ScreenIdentifier.SETTINGS)
+                        FragmentListener.Action.NavigateToScreen,
+                        SettingsFragment.Key())
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -53,6 +56,19 @@ class SpringOneFragment : BaseFragment(),
                               savedInstanceState: Bundle?): View? {
         presenter = SpringOnePresenter(this, networkService)
         return inflater.inflate(R.layout.fragment_spring_one, container, false)
+    }
+
+    override fun onViewCreated(view: View,
+                               savedInstanceState: Bundle?) {
+        goToSpringTwoButton.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.goToSpringTwoButton -> fragmentListener?.performAction(FRAGMENT_TAG,
+                    FragmentListener.Action.NavigateToScreen,
+                    SpringTwoFragment.Key("foo"))
+        }
     }
 
     companion object {

@@ -6,7 +6,7 @@ import android.view.*
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import app.eccweizhi.androidinstantapptemplate.spring.R
 import app.eccweizhi.androidinstantapptemplate.spring.di.DaggerSpringComponent
 import app.eccweizhi.androidinstantapptemplate.spring.ui.SpringStuff
@@ -39,8 +39,8 @@ class SpringTwoFragment : BaseFragment(),
         return when (item.itemId) {
             R.id.action_settings -> {
                 fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.Navigate,
-                        ScreenIdentifier.SETTINGS)
+                        FragmentListener.Action.NavigateToScreen,
+                        SettingsFragment.Key())
                 true
             }
             else -> super.onOptionsItemSelected(item)

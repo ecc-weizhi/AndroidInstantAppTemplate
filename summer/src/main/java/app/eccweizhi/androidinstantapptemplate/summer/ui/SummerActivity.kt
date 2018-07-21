@@ -10,6 +10,5 @@ class SummerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         MainActivity.startWith(this,
                 SummerFragment.Key("foo"))
-        finish()
     }
 }

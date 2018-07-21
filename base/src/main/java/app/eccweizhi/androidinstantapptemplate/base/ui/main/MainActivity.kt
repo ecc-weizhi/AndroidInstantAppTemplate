@@ -9,11 +9,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
+import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragment
-import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
@@ -34,13 +33,12 @@ class MainActivity : BaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(activityToolbar)
+        setupLogView()
 
         presenter = MainPresenter(this, networkService)
 
-        setupLogView()
-
-        setSupportActionBar(activityToolbar)
-
+        // form backstack
         if (savedInstanceState == null) {
             backstackKeys = intent.getParcelableArrayListExtra<Key>(EXTRA_KEY_BACKSTACK_KEYS)
                     ?: arrayListOf()
@@ -48,16 +46,11 @@ class MainActivity : BaseActivity(),
             if (backstackKeys.isEmpty()) {
                 backstackKeys.add(ListFragment.Key())
             }
-
-            appLog.log(LOG_TAG, "onCreate. hasSaveState: false. $backstackKeys")
-            goToFragment(backstackKeys.last())
         } else {
             backstackKeys = savedInstanceState.getParcelableArrayList<Key>(EXTRA_KEY_BACKSTACK_KEYS)
                     ?: arrayListOf()
-
-            appLog.log(LOG_TAG, "onCreate. hasSaveState: true. $backstackKeys")
-            goToFragment(backstackKeys.last())
         }
+        goToFragment(backstackKeys.last())
     }
 
     override fun onDestroy() {
@@ -85,7 +78,15 @@ class MainActivity : BaseActivity(),
                                action: FragmentListener.Action,
                                vararg data: Any) {
         when (action) {
-            FragmentListener.Action.Navigate -> performNavigate(data[0] as String)
+            FragmentListener.Action.NavigateToFeature -> {
+                val featureUri = data[0] as String
+                goToFeature(featureUri)
+            }
+            FragmentListener.Action.NavigateToScreen -> {
+                val fragmentKey = data[0] as Key
+                backstackKeys.add(fragmentKey)
+                goToFragment(backstackKeys.last())
+            }
         }
     }
 
@@ -98,42 +99,39 @@ class MainActivity : BaseActivity(),
         }
     }
 
-    private fun performNavigate(identifier: String) {
-        when (identifier) {
-            ScreenIdentifier.URI_FEATURE_SPRING -> {
+    private fun goToFeature(featureUri: String) {
+        when (featureUri) {
+            FeatureUriString.SPRING -> {
                 val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(ScreenIdentifier.URI_FEATURE_SPRING)).apply {
+                        Uri.parse(FeatureUriString.SPRING)).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
                 }
 
                 startActivity(newIntent)
             }
-            ScreenIdentifier.URI_FEATURE_SUMMER -> {
+            FeatureUriString.SUMMER -> {
                 val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(ScreenIdentifier.URI_FEATURE_SUMMER)).apply {
+                        Uri.parse(FeatureUriString.SUMMER)).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
                 }
 
                 startActivity(newIntent)
             }
-            ScreenIdentifier.URI_FEATURE_AUTUMN -> {
+            FeatureUriString.AUTUMN -> {
                 val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(ScreenIdentifier.URI_FEATURE_AUTUMN)).apply {
+                        Uri.parse(FeatureUriString.AUTUMN)).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
                 }
 
                 startActivity(newIntent)
             }
-            ScreenIdentifier.URI_FEATURE_WINTER -> {
+            FeatureUriString.WINTER -> {
                 val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(ScreenIdentifier.URI_FEATURE_WINTER)).apply {
+                        Uri.parse(FeatureUriString.WINTER)).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
                 }
 
                 startActivity(newIntent)
-            }
-            ScreenIdentifier.SETTINGS -> {
-                startWith(this, SettingsFragment.Key())
             }
             else -> {
                 throw NotImplementedError()
@@ -187,6 +185,7 @@ class MainActivity : BaseActivity(),
                 putExtra(EXTRA_KEY_BACKSTACK_KEYS, keyStack)
             }
             activity.startActivity(intent)
+            activity.finish()
         }
     }
 }

@@ -10,6 +10,5 @@ class WinterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         MainActivity.startWith(this,
                 WinterFragment.Key("foo"))
-        finish()
     }
 }

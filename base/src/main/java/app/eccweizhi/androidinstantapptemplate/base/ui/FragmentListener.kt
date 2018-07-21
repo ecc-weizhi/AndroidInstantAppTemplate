@@ -10,6 +10,7 @@ interface FragmentListener {
                       vararg data:Any)
 
     enum class Action{
-        Navigate
+        NavigateToFeature,
+        NavigateToScreen
     }
 }

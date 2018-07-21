@@ -10,6 +10,5 @@ class AutumnActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         MainActivity.startWith(this,
                 AutumnFragment.Key("foo"))
-        finish()
     }
 }

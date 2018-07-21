@@ -8,8 +8,8 @@ import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.groupie.AdapterWrapper
+import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -34,8 +34,8 @@ class ListFragment : BaseFragment(),
         return when (item.itemId) {
             R.id.action_settings -> {
                 fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.Navigate,
-                        ScreenIdentifier.SETTINGS)
+                        FragmentListener.Action.NavigateToScreen,
+                        SettingsFragment.Key())
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -83,11 +83,11 @@ class ListFragment : BaseFragment(),
         presenter.onWinterClick()
     }
 
-    override fun navigateTo(screenIdentifier: String) {
-        appLog.log(LOG_TAG, "navigateTo $screenIdentifier")
+    override fun goToFeature(featureUri: String) {
+        appLog.log(LOG_TAG, "goToFeature $featureUri")
         fragmentListener?.performAction(FRAGMENT_TAG,
-                FragmentListener.Action.Navigate,
-                screenIdentifier)
+                FragmentListener.Action.NavigateToFeature,
+                featureUri)
     }
 
     companion object {

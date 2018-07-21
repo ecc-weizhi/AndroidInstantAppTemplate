@@ -6,7 +6,7 @@ import android.view.*
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import app.eccweizhi.androidinstantapptemplate.winter.R
 import kotlinx.android.parcel.Parcelize
 
@@ -26,8 +26,8 @@ class WinterFragment : BaseFragment() {
         return when (item.itemId) {
             R.id.action_settings -> {
                 fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.Navigate,
-                        ScreenIdentifier.SETTINGS)
+                        FragmentListener.Action.NavigateToScreen,
+                        SettingsFragment.Key())
                 true
             }
             else -> super.onOptionsItemSelected(item)

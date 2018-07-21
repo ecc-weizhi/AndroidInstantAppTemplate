@@ -1,7 +1,7 @@
 package app.eccweizhi.androidinstantapptemplate.base.ui.list
 
 import app.eccweizhi.androidinstantapptemplate.base.network.NetworkService
-import app.eccweizhi.androidinstantapptemplate.base.ui.ScreenIdentifier
+import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 
 
 class ListPresenter(
@@ -9,19 +9,19 @@ class ListPresenter(
         private val networkService: NetworkService
 ) : Mvp.Presenter {
     override fun onSpringClick() {
-        view.navigateTo(ScreenIdentifier.URI_FEATURE_SPRING)
+        view.goToFeature(FeatureUriString.SPRING)
     }
 
     override fun onSummerClick() {
-        view.navigateTo(ScreenIdentifier.URI_FEATURE_SUMMER)
+        view.goToFeature(FeatureUriString.SUMMER)
     }
 
     override fun onAutumnClick() {
-        view.navigateTo(ScreenIdentifier.URI_FEATURE_AUTUMN)
+        view.goToFeature(FeatureUriString.AUTUMN)
     }
 
     override fun onWinterClick() {
-        view.navigateTo(ScreenIdentifier.URI_FEATURE_WINTER)
+        view.goToFeature(FeatureUriString.WINTER)
     }
 
 }

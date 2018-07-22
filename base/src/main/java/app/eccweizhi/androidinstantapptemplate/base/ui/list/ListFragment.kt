@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragmentWithDefaultActionBar
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
+import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.groupie.AdapterWrapper
 import kotlinx.android.parcel.Parcelize
@@ -24,13 +25,19 @@ class ListFragment : BaseFragmentWithDefaultActionBar(),
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        presenter = ListPresenter(this, networkService)
-        adapterWrapper = AdapterWrapper(context!!, requestManager)
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        presenter = ListPresenter(this,
+                networkService)
+        adapterWrapper = AdapterWrapper(context!!,
+                requestManager)
+        return inflater.inflate(R.layout.fragment_main,
+                container,
+                false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View,
+                               savedInstanceState: Bundle?) {
+        super.onViewCreated(view,
+                savedInstanceState)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapterWrapper.adapter
@@ -47,25 +54,43 @@ class ListFragment : BaseFragmentWithDefaultActionBar(),
     }
 
     override fun onSpringClick() {
-        presenter.onSpringClick()
+        presenter.onSpringClick(paramEditText.text.toString())
     }
 
     override fun onSummerClick() {
-        presenter.onSummerClick()
+        presenter.onSummerClick(paramEditText.text.toString())
     }
 
     override fun onAutumnClick() {
-        presenter.onAutumnClick()
+        presenter.onAutumnClick(paramEditText.text.toString())
     }
 
     override fun onWinterClick() {
-        presenter.onWinterClick()
+        presenter.onWinterClick(paramEditText.text.toString())
     }
 
-    override fun goToFeature(featureUri: String) {
-        appLog.log(LOG_TAG, "goToFeature $featureUri")
+    override fun getTitle(): CharSequence? = getString(R.string.title_list)
+
+    override fun getSubtitle(): CharSequence? = null
+
+    override fun goToSpring(param: String) {
         fragmentListener?.performAction(FragmentListener.Action.NavigateToFeature,
-                featureUri)
+                FeatureUriString.newSpringIntent(param))
+    }
+
+    override fun goToSummer(param: String) {
+        fragmentListener?.performAction(FragmentListener.Action.NavigateToFeature,
+                FeatureUriString.newSummerIntent(param))
+    }
+
+    override fun goToAutumn(param: String) {
+        fragmentListener?.performAction(FragmentListener.Action.NavigateToFeature,
+                FeatureUriString.newAutumnIntent(param))
+    }
+
+    override fun goToWinter(param: String) {
+        fragmentListener?.performAction(FragmentListener.Action.NavigateToFeature,
+                FeatureUriString.newWinterIntent(param))
     }
 
     companion object {

@@ -16,7 +16,8 @@ abstract class BaseFragmentWithDefaultActionBar : BaseFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu,
                                      inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_default, menu)
+        inflater.inflate(R.menu.menu_default,
+                menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

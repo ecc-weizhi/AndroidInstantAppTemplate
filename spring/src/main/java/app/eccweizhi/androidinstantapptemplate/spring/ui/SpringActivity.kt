@@ -2,6 +2,7 @@ package app.eccweizhi.androidinstantapptemplate.spring.ui
 
 import android.os.Bundle
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
+import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 import app.eccweizhi.androidinstantapptemplate.base.ui.main.MainActivity
 import app.eccweizhi.androidinstantapptemplate.spring.di.DaggerSpringComponent
 import app.eccweizhi.androidinstantapptemplate.spring.ui.springone.SpringOneFragment
@@ -19,9 +20,9 @@ class SpringActivity : BaseActivity() {
                 .inject(this)
         super.onCreate(savedInstanceState)
 
-        appLog.log(LOG_TAG, "onCreate")
+        val param1 = intent.getStringExtra(FeatureUriString.SPRING_INTENT_KEY_PARAM_1)
         MainActivity.startWith(this,
-                SpringOneFragment.Key("foo"))
+                SpringOneFragment.Key(param1))
     }
 
     companion object {

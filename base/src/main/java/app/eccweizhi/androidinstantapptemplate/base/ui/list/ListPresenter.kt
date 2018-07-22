@@ -1,27 +1,26 @@
 package app.eccweizhi.androidinstantapptemplate.base.ui.list
 
 import app.eccweizhi.androidinstantapptemplate.base.network.NetworkService
-import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 
 
 class ListPresenter(
         private val view: Mvp.View,
         private val networkService: NetworkService
 ) : Mvp.Presenter {
-    override fun onSpringClick() {
-        view.goToFeature(FeatureUriString.SPRING)
+    override fun onSpringClick(param: String) {
+        view.goToSpring(param)
     }
 
-    override fun onSummerClick() {
-        view.goToFeature(FeatureUriString.SUMMER)
+    override fun onSummerClick(param: String) {
+        view.goToSummer(param)
     }
 
-    override fun onAutumnClick() {
-        view.goToFeature(FeatureUriString.AUTUMN)
+    override fun onAutumnClick(param: String) {
+        view.goToAutumn(param)
     }
 
-    override fun onWinterClick() {
-        view.goToFeature(FeatureUriString.WINTER)
+    override fun onWinterClick(param: String) {
+        view.goToWinter(param)
     }
 
 }

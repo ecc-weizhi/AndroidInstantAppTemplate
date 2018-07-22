@@ -2,14 +2,12 @@ package app.eccweizhi.androidinstantapptemplate.base.ui.main
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import app.eccweizhi.androidinstantapptemplate.base.R
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
-import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragment
@@ -78,8 +76,8 @@ class MainActivity : BaseActivity(),
                                vararg data: Any) {
         when (action) {
             FragmentListener.Action.NavigateToFeature -> {
-                val featureUri = data[0] as String
-                goToFeature(featureUri)
+                val featureIntent = data[0] as Intent
+                startActivity(featureIntent)
             }
             FragmentListener.Action.NavigateToScreen -> {
                 val fragmentKey = data[0] as Key
@@ -87,13 +85,6 @@ class MainActivity : BaseActivity(),
                 goToFragment(backstackKeys.last())
             }
         }
-    }
-
-    override fun setScreenName(titleResId: Int,
-                               subtitleResId: Int) {
-        val title = if (titleResId == 0) null else getString(titleResId)
-        val subtitle = if (subtitleResId == 0) null else getString(subtitleResId)
-        setScreenName(title, subtitle)
     }
 
     override fun setScreenName(title: CharSequence?,
@@ -108,46 +99,6 @@ class MainActivity : BaseActivity(),
         } else {
             backstackKeys.removeAt(backstackKeys.lastIndex)
             goToFragment(backstackKeys.last())
-        }
-    }
-
-    private fun goToFeature(featureUri: String) {
-        when (featureUri) {
-            FeatureUriString.SPRING -> {
-                val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(FeatureUriString.SPRING)).apply {
-                    addCategory(Intent.CATEGORY_BROWSABLE)
-                }
-
-                startActivity(newIntent)
-            }
-            FeatureUriString.SUMMER -> {
-                val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(FeatureUriString.SUMMER)).apply {
-                    addCategory(Intent.CATEGORY_BROWSABLE)
-                }
-
-                startActivity(newIntent)
-            }
-            FeatureUriString.AUTUMN -> {
-                val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(FeatureUriString.AUTUMN)).apply {
-                    addCategory(Intent.CATEGORY_BROWSABLE)
-                }
-
-                startActivity(newIntent)
-            }
-            FeatureUriString.WINTER -> {
-                val newIntent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(FeatureUriString.WINTER)).apply {
-                    addCategory(Intent.CATEGORY_BROWSABLE)
-                }
-
-                startActivity(newIntent)
-            }
-            else -> {
-                throw NotImplementedError()
-            }
         }
     }
 

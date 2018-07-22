@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--spring one-->
+    <string name="title_spring_one">Spring One</string>
+    <string name="button_go_to_spring_two">Go to Spring Two</string>
+    <string name="param_text">Argument: %1$s</string>
+
+    <!--spring two-->
+    <string name="title_spring_two">Spring Two</string>
+</resources>

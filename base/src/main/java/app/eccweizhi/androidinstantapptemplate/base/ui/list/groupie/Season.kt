@@ -24,10 +24,10 @@ class Season private constructor(
     }
 
     companion object {
-        private const val springUrl = "https://i.imgur.com/wA2KgEi.jpg"
-        private const val summerUrl = "https://i.imgur.com/wA2KgEi.jpg"
-        private const val autumnUrl = "https://i.imgur.com/wA2KgEi.jpg"
-        private const val winterUrl = "https://i.imgur.com/wA2KgEi.jpg"
+        private const val springUrl = "https://i.imgur.com/H2y8Gq5.jpg"
+        private const val summerUrl = "https://i.imgur.com/xBSSlP5.jpg"
+        private const val autumnUrl = "https://i.imgur.com/ye9mLEB.jpg"
+        private const val winterUrl = "https://i.imgur.com/am2zaMU.jpg"
 
         @JvmStatic
         fun spring(id: Long,

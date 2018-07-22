@@ -31,18 +31,25 @@ class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
                 .build()
                 .inject(this)
         super.onCreate(savedInstanceState)
-        appLog.log(LOG_TAG, "onCreate")
+        appLog.log(LOG_TAG,
+                "onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        presenter = SpringOnePresenter(this, networkService)
-        return inflater.inflate(R.layout.fragment_spring_one, container, false)
+        presenter = SpringOnePresenter(this,
+                networkService)
+        return inflater.inflate(R.layout.fragment_spring_one,
+                container,
+                false)
     }
 
     override fun onViewCreated(view: View,
                                savedInstanceState: Bundle?) {
+        val param = arguments?.getString(ARG_PARAM_1)
+        paramText.text = getString(R.string.param_text,
+                param)
         goToSpringTwoButton.setOnClickListener(this)
     }
 
@@ -57,6 +64,10 @@ class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
                 SpringTwoFragment.Key("foo"))
     }
 
+    override fun getTitle(): CharSequence? = getString(R.string.title_spring_one)
+
+    override fun getSubtitle(): CharSequence? = null
+
     companion object {
         private const val LOG_TAG = "SpringOneFragment"
         const val FRAGMENT_TAG = "SpringOneFragment"
@@ -66,7 +77,8 @@ class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
         fun newInstance(param1: String): SpringOneFragment {
             val frag = SpringOneFragment()
             val args = Bundle().apply {
-                putString(ARG_PARAM_1, param1)
+                putString(ARG_PARAM_1,
+                        param1)
             }
             frag.arguments = args
             return frag
@@ -76,7 +88,8 @@ class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
     @Parcelize
     data class Key(val clazz: String,
                    val param1: String) : BaseKey() {
-        constructor(param1: String) : this(FRAGMENT_TAG, param1)
+        constructor(param1: String) : this(FRAGMENT_TAG,
+                param1)
 
         override fun createFragment(): Fragment = newInstance(param1)
     }

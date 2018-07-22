@@ -15,7 +15,9 @@
         <meta-data
             android:name="aia-compat-api-min-version"
             android:value="1" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,9 +34,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:path="/" />
+                    android:path="/"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -43,9 +45,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
                     android:host="androidinstantapptemplate.eccweizhi.app"
-                    android:path="/" />
+                    android:path="/"
+                    android:scheme="http" />
             </intent-filter>
 
         </activity>

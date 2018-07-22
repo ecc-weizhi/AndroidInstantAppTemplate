@@ -52,6 +52,16 @@ abstract class BaseFragment : Fragment() {
         super.onDetach()
     }
 
+    override fun onStart() {
+        super.onStart()
+        fragmentListener?.setScreenName(getTitle(),
+                getSubtitle())
+    }
+
+    abstract fun getTitle(): CharSequence?
+
+    abstract fun getSubtitle(): CharSequence?
+
     fun <K : Key> getKey(): K = arguments!!.getParcelable(KEY_TAG) as K
 
     companion object {

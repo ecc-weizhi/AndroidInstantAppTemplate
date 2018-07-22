@@ -20,18 +20,23 @@ class SettingsFragment : BaseFragment(),
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        presenter = SettingsPresenter(this, store)
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        presenter = SettingsPresenter(this,
+                store)
+        return inflater.inflate(R.layout.fragment_settings,
+                container,
+                false)
     }
 
     override fun onViewCreated(view: View,
                                savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view,
+                savedInstanceState)
 
         val activity = requireActivity()
         val packageName = activity.packageName
         val packageManager = activity.packageManager
-        val versionCode = packageManager.getPackageInfo(packageName, 0).versionCode
+        val versionCode = packageManager.getPackageInfo(packageName,
+                0).versionCode
         versionCodeText.text = versionCode.toString()
         isInstantAppText.text = InstantApps.isInstantApp(activity).toString()
     }
@@ -49,6 +54,10 @@ class SettingsFragment : BaseFragment(),
     override fun showShowLog(showLog: Boolean) {
         showLogSwitch.isChecked = showLog
     }
+
+    override fun getTitle(): CharSequence? = getString(R.string.title_settings)
+
+    override fun getSubtitle(): CharSequence? = null
 
     companion object {
         const val FRAGMENT_TAG = "SettingsFragment"

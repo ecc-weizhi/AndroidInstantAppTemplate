@@ -2,25 +2,35 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/screenNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Spring One"
+        android:text="@string/title_spring_one"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <TextView
+        android:id="@+id/paramText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/goToSpringTwoButton"
-        android:text="Go to Spring two"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/screenNameText" />
+        app:layout_constraintTop_toBottomOf="@id/screenNameText"
+        tools:text="@string/param_text" />
+
+    <Button
+        android:id="@+id/goToSpringTwoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_go_to_spring_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paramText" />
 
 </android.support.constraint.ConstraintLayout>

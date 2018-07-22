@@ -36,26 +36,21 @@ class SpringTwoFragment : BaseFragmentWithDefaultActionBar(),
         return inflater.inflate(R.layout.fragment_spring_two, container, false)
     }
 
+    override fun getTitle(): CharSequence? = getString(R.string.title_spring_two)
+
+    override fun getSubtitle(): CharSequence? = null
+
     companion object {
         const val FRAGMENT_TAG = "SpringTwoFragment"
-        private const val ARG_PARAM_1 = "param1"
 
         @JvmStatic
-        fun newInstance(param1: String): SpringTwoFragment {
-            val frag = SpringTwoFragment()
-            val args = Bundle().apply {
-                putString(ARG_PARAM_1, param1)
-            }
-            frag.arguments = args
-            return frag
-        }
+        fun newInstance(): SpringTwoFragment = SpringTwoFragment()
     }
 
     @Parcelize
-    data class Key(val clazz: String,
-                   val param1: String) : BaseKey() {
-        constructor(param1: String) : this(FRAGMENT_TAG, param1)
+    data class Key(val clazz: String) : BaseKey() {
+        constructor() : this(FRAGMENT_TAG)
 
-        override fun createFragment(): Fragment = newInstance(param1)
+        override fun createFragment(): Fragment = newInstance()
     }
 }

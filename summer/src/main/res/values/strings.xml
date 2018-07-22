@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_autumn">Autumn</string>
+    <string name="title_summer">Summer</string>
     <string name="param_text">Argument: %1$s</string>
 </resources>

@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <app.eccweizhi.androidinstantapptemplate.base.ui.customview.AutoDismissKeyboardEditText
         android:id="@+id/paramEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
         android:hint="@string/list_param_hint"
+        android:maxLength="20"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        android:maxLength="20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

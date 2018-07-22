@@ -13,7 +13,7 @@ import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.groupie.AdapterWrapper
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_list.*
 
 
 class ListFragment : BaseFragmentWithDefaultActionBar(),
@@ -29,7 +29,7 @@ class ListFragment : BaseFragmentWithDefaultActionBar(),
                 networkService)
         adapterWrapper = AdapterWrapper(context!!,
                 requestManager)
-        return inflater.inflate(R.layout.fragment_main,
+        return inflater.inflate(R.layout.fragment_list,
                 container,
                 false)
     }
@@ -41,6 +41,7 @@ class ListFragment : BaseFragmentWithDefaultActionBar(),
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapterWrapper.adapter
+        paramEditText.enableAutoDismissKeyboard(true)
     }
 
     override fun onStart() {

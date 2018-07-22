@@ -2,11 +2,12 @@ package app.eccweizhi.androidinstantapptemplate.spring.ui.springone
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.*
-import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragmentWithDefaultActionBar
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import app.eccweizhi.androidinstantapptemplate.spring.R
 import app.eccweizhi.androidinstantapptemplate.spring.di.DaggerSpringComponent
 import app.eccweizhi.androidinstantapptemplate.spring.ui.SpringStuff
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_spring_one.*
 import javax.inject.Inject
 
 
-class SpringOneFragment : BaseFragment(),
+class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
         Mvp.View,
         View.OnClickListener {
     @Inject
@@ -30,25 +31,7 @@ class SpringOneFragment : BaseFragment(),
                 .build()
                 .inject(this)
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
         appLog.log(LOG_TAG, "onCreate")
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu,
-                                     inflater: MenuInflater) {
-        inflater.inflate(app.eccweizhi.androidinstantapptemplate.base.R.menu.menu_list, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.NavigateToScreen,
-                        SettingsFragment.Key())
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -65,10 +48,13 @@ class SpringOneFragment : BaseFragment(),
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.goToSpringTwoButton -> fragmentListener?.performAction(FRAGMENT_TAG,
-                    FragmentListener.Action.NavigateToScreen,
-                    SpringTwoFragment.Key("foo"))
+            R.id.goToSpringTwoButton -> presenter.onGoToSpringTwoClick()
         }
+    }
+
+    override fun goToSpringTwo() {
+        fragmentListener?.performAction(FragmentListener.Action.NavigateToScreen,
+                SpringTwoFragment.Key("foo"))
     }
 
     companion object {

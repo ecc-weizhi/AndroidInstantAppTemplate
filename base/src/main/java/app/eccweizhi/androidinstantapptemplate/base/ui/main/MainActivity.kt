@@ -74,8 +74,7 @@ class MainActivity : BaseActivity(),
         goToFragment(backstackKeys.last())
     }
 
-    override fun performAction(fragmentTag: String,
-                               action: FragmentListener.Action,
+    override fun performAction(action: FragmentListener.Action,
                                vararg data: Any) {
         when (action) {
             FragmentListener.Action.NavigateToFeature -> {
@@ -88,6 +87,19 @@ class MainActivity : BaseActivity(),
                 goToFragment(backstackKeys.last())
             }
         }
+    }
+
+    override fun setScreenName(titleResId: Int,
+                               subtitleResId: Int) {
+        val title = if (titleResId == 0) null else getString(titleResId)
+        val subtitle = if (subtitleResId == 0) null else getString(subtitleResId)
+        setScreenName(title, subtitle)
+    }
+
+    override fun setScreenName(title: CharSequence?,
+                               subtitle: CharSequence?) {
+        supportActionBar?.title = title
+        supportActionBar?.subtitle = subtitle
     }
 
     override fun onBackPressed() {

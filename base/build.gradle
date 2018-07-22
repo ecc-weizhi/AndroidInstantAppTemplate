@@ -8,6 +8,7 @@ androidExtensions {
 }
 
 android {
+    buildToolsVersion rootProject.buildToolsVersion
     compileSdkVersion rootProject.compileSdkVersion
     baseFeature true
 

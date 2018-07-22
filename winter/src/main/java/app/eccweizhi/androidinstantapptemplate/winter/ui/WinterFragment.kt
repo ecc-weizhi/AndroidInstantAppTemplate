@@ -2,38 +2,16 @@ package app.eccweizhi.androidinstantapptemplate.winter.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.*
-import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragmentWithDefaultActionBar
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
-import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import app.eccweizhi.androidinstantapptemplate.winter.R
 import kotlinx.android.parcel.Parcelize
 
 
-class WinterFragment : BaseFragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu,
-                                     inflater: MenuInflater) {
-        inflater.inflate(app.eccweizhi.androidinstantapptemplate.base.R.menu.menu_list, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.NavigateToScreen,
-                        SettingsFragment.Key())
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
+class WinterFragment : BaseFragmentWithDefaultActionBar() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

@@ -24,6 +24,7 @@ allprojects {
 
 // Defining variables that can be referenced in other build.gradle file
 ext {
+    buildToolsVersion = "27.0.3"
     compileSdkVersion = 27
     minSdkVersion = 19
     targetSdkVersion = 27

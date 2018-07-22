@@ -7,4 +7,7 @@ class SpringOnePresenter(
         private val view: Mvp.View,
         private val networkService: NetworkService
 ) : Mvp.Presenter {
+    override fun onGoToSpringTwoClick() {
+        view.goToSpringTwo()
+    }
 }

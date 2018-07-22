@@ -3,44 +3,23 @@ package app.eccweizhi.androidinstantapptemplate.base.ui.list
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import app.eccweizhi.androidinstantapptemplate.base.R
-import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragmentWithDefaultActionBar
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.groupie.AdapterWrapper
-import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class ListFragment : BaseFragment(),
+class ListFragment : BaseFragmentWithDefaultActionBar(),
         Mvp.View,
         AdapterWrapper.Listener {
     private lateinit var adapterWrapper: AdapterWrapper
     private lateinit var presenter: Mvp.Presenter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu,
-                                     inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_list, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.NavigateToScreen,
-                        SettingsFragment.Key())
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -85,8 +64,7 @@ class ListFragment : BaseFragment(),
 
     override fun goToFeature(featureUri: String) {
         appLog.log(LOG_TAG, "goToFeature $featureUri")
-        fragmentListener?.performAction(FRAGMENT_TAG,
-                FragmentListener.Action.NavigateToFeature,
+        fragmentListener?.performAction(FragmentListener.Action.NavigateToFeature,
                 featureUri)
     }
 

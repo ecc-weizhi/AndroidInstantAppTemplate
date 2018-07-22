@@ -2,46 +2,21 @@ package app.eccweizhi.androidinstantapptemplate.autumn.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import app.eccweizhi.androidinstantapptemplate.autumn.R
-import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragment
+import app.eccweizhi.androidinstantapptemplate.base.ui.BaseFragmentWithDefaultActionBar
 import app.eccweizhi.androidinstantapptemplate.base.ui.BaseKey
-import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
-import app.eccweizhi.androidinstantapptemplate.base.ui.settings.SettingsFragment
 import kotlinx.android.parcel.Parcelize
 
 
-class AutumnFragment : BaseFragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu,
-                                     inflater: MenuInflater) {
-        inflater.inflate(app.eccweizhi.androidinstantapptemplate.base.R.menu.menu_list, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                fragmentListener?.performAction(FRAGMENT_TAG,
-                        FragmentListener.Action.NavigateToScreen,
-                        SettingsFragment.Key())
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
+class AutumnFragment : BaseFragmentWithDefaultActionBar() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        fragmentListener?.setScreenName(R.string.title_autumn, 0)
         return inflater.inflate(R.layout.fragment_autumn, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     companion object {

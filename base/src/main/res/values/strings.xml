@@ -12,9 +12,13 @@
     <string name="list_list_winter_subtitle">In the depth of winter I finally learned that there was in me an invincible summer</string>
     <string name="title_list">InstantAppTemplate</string>
     <string name="list_param_hint">Enter string to pass to feature module</string>
+    <string name="list_list_content_descript_icon">Season thumbnail</string>
 
     <!--settings-->
     <string name="title_settings">Settings</string>
+    <string name="header_is_instant_app">isInstantApp: </string>
+    <string name="header_version_code">Version code: </string>
+    <string name="header_show_log">Show log</string>
 
     <!--menu-->
     <string name="menu_action_settings">Settings</string>

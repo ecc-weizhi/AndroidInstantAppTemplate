@@ -24,8 +24,4 @@ class SpringActivity : BaseActivity() {
         MainActivity.startWith(this,
                 SpringOneFragment.Key(param1))
     }
-
-    companion object {
-        const val LOG_TAG = "SpringActivity"
-    }
 }

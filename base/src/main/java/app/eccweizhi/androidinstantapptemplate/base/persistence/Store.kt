@@ -6,9 +6,7 @@ import javax.inject.Inject
 
 
 @ApplicationScope
-class Store @Inject constructor(settingsPref: SettingsPref) {
-    private val settingsPref = settingsPref
-
+class Store @Inject constructor(private val settingsPref: SettingsPref) {
     fun readSettingsShowLog(): BehaviorSubject<Boolean> {
         return settingsPref.readShowLog()
     }

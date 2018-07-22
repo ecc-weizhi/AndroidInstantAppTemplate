@@ -95,7 +95,6 @@ class ListFragment : BaseFragmentWithDefaultActionBar(),
     }
 
     companion object {
-        private const val LOG_TAG = "ListFragment"
         const val FRAGMENT_TAG = "ListFragment"
 
         @JvmStatic

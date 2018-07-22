@@ -11,6 +11,7 @@
         android:id="@+id/imageView"
         android:layout_width="@dimen/list_image_width"
         android:layout_height="@dimen/list_image_height"
+        android:contentDescription="@string/list_list_content_descript_icon"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

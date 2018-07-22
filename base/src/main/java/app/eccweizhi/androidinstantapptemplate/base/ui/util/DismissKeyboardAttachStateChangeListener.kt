@@ -5,7 +5,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 
 
-class DismissKeyboardAttachStateChangeListener() : View.OnAttachStateChangeListener {
+class DismissKeyboardAttachStateChangeListener : View.OnAttachStateChangeListener {
     override fun onViewDetachedFromWindow(v: View) {
         val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(v.windowToken,

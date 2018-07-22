@@ -1,14 +1,12 @@
 package app.eccweizhi.androidinstantapptemplate.base.ui.customview
 
 import android.content.Context
-import android.os.Build
-import android.support.annotation.RequiresApi
+import android.support.v7.widget.AppCompatEditText
 import android.util.AttributeSet
-import android.widget.EditText
 import app.eccweizhi.androidinstantapptemplate.base.ui.util.DismissKeyboardAttachStateChangeListener
 
 
-class AutoDismissKeyboardEditText : EditText {
+class AutoDismissKeyboardEditText : AppCompatEditText {
     private var dimissKeyboardAttachStateChangeListener: DismissKeyboardAttachStateChangeListener? = null
 
     constructor(context: Context) : super(context)
@@ -22,15 +20,6 @@ class AutoDismissKeyboardEditText : EditText {
                 defStyleAttr: Int) : super(context,
             attrs,
             defStyleAttr)
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    constructor(context: Context,
-                attrs: AttributeSet,
-                defStyleAttr: Int,
-                defStyleRes: Int) : super(context,
-            attrs,
-            defStyleAttr,
-            defStyleRes)
 
     fun enableAutoDismissKeyboard(enable: Boolean) {
         if (enable && dimissKeyboardAttachStateChangeListener == null) {

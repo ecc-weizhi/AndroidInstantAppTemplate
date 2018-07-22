@@ -48,6 +48,8 @@ class MainActivity : BaseActivity(),
             backstackKeys = savedInstanceState.getParcelableArrayList<Key>(EXTRA_KEY_BACKSTACK_KEYS)
                     ?: arrayListOf()
         }
+        appLog.log(javaClass.simpleName,
+                "onCreate, taskId: $taskId, backstack: $backstackKeys")
         goToFragment(backstackKeys.last())
     }
 
@@ -67,7 +69,8 @@ class MainActivity : BaseActivity(),
         val newIntentBackstackKeys = intent.getParcelableArrayListExtra<Key>(EXTRA_KEY_BACKSTACK_KEYS)
         backstackKeys.addAll(newIntentBackstackKeys)
 
-        appLog.log(LOG_TAG, "onNewIntent: $backstackKeys")
+        appLog.log(javaClass.simpleName,
+                "onNewIntent: $backstackKeys")
 
         goToFragment(backstackKeys.last())
     }
@@ -124,7 +127,8 @@ class MainActivity : BaseActivity(),
     }
 
     private fun goToFragment(key: Key) {
-        appLog.log(LOG_TAG, "goTo $key")
+        appLog.log(javaClass.simpleName,
+                "goToFragment $key")
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, key.newFragment(), key.fragmentTag)
                 .commit()

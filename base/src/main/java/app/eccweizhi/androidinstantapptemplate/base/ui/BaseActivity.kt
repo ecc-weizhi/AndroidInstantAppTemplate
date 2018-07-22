@@ -34,6 +34,5 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         screenComponent.inject(this)
         super.onCreate(savedInstanceState)
-        appLog.log(javaClass.simpleName, "onCreate, taskId: $taskId")
     }
 }

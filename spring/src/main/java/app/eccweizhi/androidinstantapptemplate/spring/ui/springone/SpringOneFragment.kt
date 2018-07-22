@@ -31,8 +31,6 @@ class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
                 .build()
                 .inject(this)
         super.onCreate(savedInstanceState)
-        appLog.log(LOG_TAG,
-                "onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater,

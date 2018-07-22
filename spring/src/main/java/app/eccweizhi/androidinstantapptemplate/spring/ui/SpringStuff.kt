@@ -15,10 +15,6 @@ class SpringStuff @Inject constructor(
         private val context: Context,
         private val appLog: AppLog
 ) {
-    init {
-        appLog.log(LOG_TAG, "SpringStuff instantiated")
-    }
-
     companion object {
         private const val LOG_TAG = "SpringStuff"
     }

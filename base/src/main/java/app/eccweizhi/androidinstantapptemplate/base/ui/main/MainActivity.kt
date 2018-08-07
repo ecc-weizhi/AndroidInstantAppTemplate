@@ -34,7 +34,8 @@ class MainActivity : BaseActivity(),
         setSupportActionBar(activityToolbar)
         setupLogView()
 
-        presenter = MainPresenter(this, networkService)
+        presenter = MainPresenter(this,
+                networkService)
 
         // form backstack
         if (savedInstanceState == null) {
@@ -60,7 +61,8 @@ class MainActivity : BaseActivity(),
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(EXTRA_KEY_BACKSTACK_KEYS, backstackKeys)
+        outState.putParcelableArrayList(EXTRA_KEY_BACKSTACK_KEYS,
+                backstackKeys)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -112,7 +114,13 @@ class MainActivity : BaseActivity(),
         logRecyclerView.adapter = groupAdapter
 
         val logDisposable = appLog.subject
-                .map { it.map { LogItem(it.id, it.tag, it.content) } }
+                .map {
+                    it.map {
+                        LogItem(it.id,
+                                it.tag,
+                                it.content)
+                    }
+                }
                 .subscribe {
                     logSection.update(it)
                     logRecyclerView.smoothScrollToPosition(logRecyclerView.adapter.itemCount)
@@ -130,7 +138,9 @@ class MainActivity : BaseActivity(),
         appLog.log(javaClass.simpleName,
                 "goToFragment $key")
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, key.newFragment(), key.fragmentTag)
+                .replace(R.id.fragmentContainer,
+                        key.newFragment(),
+                        key.fragmentTag)
                 .commit()
     }
 
@@ -141,15 +151,20 @@ class MainActivity : BaseActivity(),
         const val EXTRA_KEY_BACKSTACK_KEYS = "BACKSTACK_KEYS"
         const val LOG_TAG = "MainActivity"
 
-        fun startWith(activity: Activity, vararg keys: Key) {
-            val intent = Intent(activity, MainActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        fun startWith(activity: Activity,
+                      vararg keys: Key) {
+            val intent = Intent(activity,
+                    MainActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        or Intent.FLAG_ACTIVITY_NEW_TASK)
 
                 val keyStack = ArrayList<Parcelable>().apply {
                     addAll(keys)
                 }
 
-                putExtra(EXTRA_KEY_BACKSTACK_KEYS, keyStack)
+                putExtra(EXTRA_KEY_BACKSTACK_KEYS,
+                        keyStack)
             }
             activity.startActivity(intent)
             activity.finish()

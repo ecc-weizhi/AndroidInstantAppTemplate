@@ -17,6 +17,7 @@
             android:value="1" />
         <activity
             android:name=".ui.main.MainActivity"
+            android:taskAffinity="app.eccweizhi.androidinstantapptemplate"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

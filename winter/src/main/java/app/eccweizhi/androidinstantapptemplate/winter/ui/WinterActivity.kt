@@ -10,7 +10,6 @@ class WinterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val param1 = intent.getStringExtra(FeatureUriString.WINTER_INTENT_KEY_PARAM_1)
-        MainActivity.startWith(this,
-                WinterFragment.Key(param1))
+        MainActivity.startWith(this, WinterFragment.Key(param1))
     }
 }

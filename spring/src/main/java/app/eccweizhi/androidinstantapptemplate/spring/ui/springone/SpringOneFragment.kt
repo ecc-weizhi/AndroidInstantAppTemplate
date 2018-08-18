@@ -72,11 +72,10 @@ class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
         private const val ARG_PARAM_1 = "param1"
 
         @JvmStatic
-        fun newInstance(param1: String): SpringOneFragment {
+        fun newInstance(param1: String?): SpringOneFragment {
             val frag = SpringOneFragment()
             val args = Bundle().apply {
-                putString(ARG_PARAM_1,
-                        param1)
+                putString(ARG_PARAM_1, param1)
             }
             frag.arguments = args
             return frag
@@ -85,9 +84,8 @@ class SpringOneFragment : BaseFragmentWithDefaultActionBar(),
 
     @Parcelize
     data class Key(val clazz: String,
-                   val param1: String) : BaseKey() {
-        constructor(param1: String) : this(FRAGMENT_TAG,
-                param1)
+                   val param1: String?) : BaseKey() {
+        constructor(param1: String?) : this(FRAGMENT_TAG, param1)
 
         override fun createFragment(): Fragment = newInstance(param1)
     }

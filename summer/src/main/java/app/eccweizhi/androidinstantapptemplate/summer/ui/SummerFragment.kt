@@ -37,11 +37,10 @@ class SummerFragment : BaseFragmentWithDefaultActionBar() {
         private const val ARG_PARAM_1 = "param1"
 
         @JvmStatic
-        fun newInstance(param1: String): SummerFragment {
+        fun newInstance(param1: String?): SummerFragment {
             val frag = SummerFragment()
             val args = Bundle().apply {
-                putString(ARG_PARAM_1,
-                        param1)
+                putString(ARG_PARAM_1, param1)
             }
             frag.arguments = args
             return frag
@@ -50,9 +49,8 @@ class SummerFragment : BaseFragmentWithDefaultActionBar() {
 
     @Parcelize
     data class Key(val clazz: String,
-                   val param1: String) : BaseKey() {
-        constructor(param1: String) : this(SummerFragment.FRAGMENT_TAG,
-                param1)
+                   val param1: String?) : BaseKey() {
+        constructor(param1: String?) : this(SummerFragment.FRAGMENT_TAG, param1)
 
         override fun createFragment(): Fragment = SummerFragment.newInstance(param1)
     }

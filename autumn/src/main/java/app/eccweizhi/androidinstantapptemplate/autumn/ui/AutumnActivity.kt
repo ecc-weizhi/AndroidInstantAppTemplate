@@ -11,7 +11,6 @@ class AutumnActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val param1 = intent.getStringExtra(FeatureUriString.AUTUMN_INTENT_KEY_PARAM_1)
-        MainActivity.startWith(this,
-                AutumnFragment.Key(param1))
+        MainActivity.startWith(this, AutumnFragment.Key(param1))
     }
 }

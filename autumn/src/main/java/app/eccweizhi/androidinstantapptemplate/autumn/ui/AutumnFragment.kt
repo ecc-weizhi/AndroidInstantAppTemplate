@@ -37,11 +37,10 @@ class AutumnFragment : BaseFragmentWithDefaultActionBar() {
         private const val ARG_PARAM_1 = "param1"
 
         @JvmStatic
-        fun newInstance(param1: String): AutumnFragment {
+        fun newInstance(param1: String?): AutumnFragment {
             val frag = AutumnFragment()
             val args = Bundle().apply {
-                putString(ARG_PARAM_1,
-                        param1)
+                putString(ARG_PARAM_1, param1)
             }
             frag.arguments = args
             return frag
@@ -50,9 +49,8 @@ class AutumnFragment : BaseFragmentWithDefaultActionBar() {
 
     @Parcelize
     data class Key(val clazz: String,
-                   val param1: String) : BaseKey() {
-        constructor(param1: String) : this(AutumnFragment.FRAGMENT_TAG,
-                param1)
+                   val param1: String?) : BaseKey() {
+        constructor(param1: String?) : this(AutumnFragment.FRAGMENT_TAG, param1)
 
         override fun createFragment(): Fragment = AutumnFragment.newInstance(param1)
     }

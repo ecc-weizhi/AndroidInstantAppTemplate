@@ -1,17 +1,21 @@
 package app.eccweizhi.androidinstantapptemplate.base.ui
 
 import android.app.Application
-import app.eccweizhi.androidinstantapptemplate.base.BuildConfig
 import app.eccweizhi.androidinstantapptemplate.base.di.application.AppModule
 import app.eccweizhi.androidinstantapptemplate.base.di.application.ApplicationComponent
 import app.eccweizhi.androidinstantapptemplate.base.di.application.DaggerApplicationComponent
 import app.eccweizhi.androidinstantapptemplate.base.di.application.LoggingModule
+import app.eccweizhi.onscreenlog.OnScreenLog
+import app.eccweizhi.onscreenlog.timber.OnScreenLoggingTree
 import timber.log.Timber
+import javax.inject.Inject
 
 
 class App : Application() {
     lateinit var applicationComponent: ApplicationComponent
         private set
+    @Inject
+    protected lateinit var onScreenLog: OnScreenLog
 
     override fun onCreate() {
         super.onCreate()
@@ -24,9 +28,7 @@ class App : Application() {
         applicationComponent.inject(this)
 
         // logging should always be the first thing to be setup
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
+        Timber.plant(OnScreenLoggingTree(onScreenLog))
     }
 
     companion object {

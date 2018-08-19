@@ -47,6 +47,7 @@ ext {
     junitVersion = '4.12'
     kotlinVersion = "$kotlin_version"
     multiDexVersion = '1.0.3'
+    onscreenlogVersion = '0.0.11'
     retrofit2Version = '2.3.0'
     rxandroidVersion = '2.0.1'
     rxjavaVersion = '2.1.7'

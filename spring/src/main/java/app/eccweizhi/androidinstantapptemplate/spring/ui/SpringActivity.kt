@@ -6,6 +6,7 @@ import app.eccweizhi.androidinstantapptemplate.base.ui.FeatureUriString
 import app.eccweizhi.androidinstantapptemplate.base.ui.main.MainActivity
 import app.eccweizhi.androidinstantapptemplate.spring.di.DaggerSpringComponent
 import app.eccweizhi.androidinstantapptemplate.spring.ui.springone.SpringOneFragment
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -19,9 +20,9 @@ class SpringActivity : BaseActivity() {
                 .build()
                 .inject(this)
         super.onCreate(savedInstanceState)
+        Timber.i("SpringActivity onCreate taskId: %d", taskId)
 
         val param1 = intent.getStringExtra(FeatureUriString.SPRING_INTENT_KEY_PARAM_1)
-        MainActivity.startWith(this,
-                SpringOneFragment.Key(param1))
+        MainActivity.startWith(this, SpringOneFragment.Key(param1))
     }
 }

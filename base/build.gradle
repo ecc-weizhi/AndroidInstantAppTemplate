@@ -52,6 +52,8 @@ dependencies {
     api "com.android.support:design:$rootProject.supportVersion"
     api "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
 
+    api "app.eccweizhi:onscreenlog-timber:$rootProject.onscreenlogVersion"
+
     api "com.squareup.retrofit2:converter-jackson:$rootProject.retrofit2Version"
     api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit2Version"
 

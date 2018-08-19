@@ -1,8 +1,8 @@
 package app.eccweizhi.androidinstantapptemplate.spring.ui
 
 import android.content.Context
-import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
 import app.eccweizhi.androidinstantapptemplate.spring.di.SpringScope
+import app.eccweizhi.onscreenlog.OnScreenLog
 import javax.inject.Inject
 
 
@@ -13,7 +13,7 @@ import javax.inject.Inject
 @SpringScope
 class SpringStuff @Inject constructor(
         private val context: Context,
-        private val appLog: AppLog
+        private val onScreenLog: OnScreenLog
 ) {
     companion object {
         private const val LOG_TAG = "SpringStuff"

@@ -1,6 +1,7 @@
 package app.eccweizhi.androidinstantapptemplate.base.di.application
 
-import app.eccweizhi.androidinstantapptemplate.base.logger.AppLog
+import android.app.Application
+import app.eccweizhi.onscreenlog.OnScreenLog
 import dagger.Module
 import dagger.Provides
 
@@ -9,7 +10,10 @@ import dagger.Provides
 class LoggingModule {
     @Provides
     @ApplicationScope
-    fun providesAppLog(): AppLog {
-        return AppLog(30)
+    fun providesOnScreenLog(application: Application): OnScreenLog {
+        return OnScreenLog.builder()
+                .context(application)
+                .notificationId(1)
+                .build()
     }
 }

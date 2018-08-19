@@ -11,11 +11,9 @@ import app.eccweizhi.androidinstantapptemplate.base.ui.BaseActivity
 import app.eccweizhi.androidinstantapptemplate.base.ui.FragmentListener
 import app.eccweizhi.androidinstantapptemplate.base.ui.Key
 import app.eccweizhi.androidinstantapptemplate.base.ui.list.ListFragment
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
-import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import java.util.*
 
 
@@ -25,11 +23,12 @@ class MainActivity : BaseActivity(),
 
     private lateinit var presenter: Mvp.Presenter
     private lateinit var backstackKeys: ArrayList<Key>
-    private val logSection = Section()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.i("MainActivity onCreate taskId: %d", taskId)
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(activityToolbar)
         setupLogView()
@@ -49,8 +48,7 @@ class MainActivity : BaseActivity(),
             backstackKeys = savedInstanceState.getParcelableArrayList<Key>(EXTRA_KEY_BACKSTACK_KEYS)
                     ?: arrayListOf()
         }
-        appLog.log(javaClass.simpleName,
-                "onCreate, taskId: $taskId, backstack: $backstackKeys")
+        Timber.d("onCreate, taskId: $taskId, backstack: $backstackKeys")
         goToFragment(backstackKeys.last())
     }
 
@@ -61,18 +59,17 @@ class MainActivity : BaseActivity(),
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(EXTRA_KEY_BACKSTACK_KEYS,
-                backstackKeys)
+        outState.putParcelableArrayList(EXTRA_KEY_BACKSTACK_KEYS, backstackKeys)
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
-        val newIntentBackstackKeys = intent.getParcelableArrayListExtra<Key>(EXTRA_KEY_BACKSTACK_KEYS)
+        val newIntentBackstackKeys = intent.getParcelableArrayListExtra<Key>(
+                EXTRA_KEY_BACKSTACK_KEYS)
         backstackKeys.addAll(newIntentBackstackKeys)
 
-        appLog.log(javaClass.simpleName,
-                "onNewIntent: $backstackKeys")
+        Timber.d("onNewIntent: $backstackKeys")
 
         goToFragment(backstackKeys.last())
     }
@@ -109,23 +106,7 @@ class MainActivity : BaseActivity(),
 
     private fun setupLogView() {
         logRecyclerView.layoutManager = LinearLayoutManager(this)
-        val groupAdapter = GroupAdapter<ViewHolder>()
-        groupAdapter.add(logSection)
-        logRecyclerView.adapter = groupAdapter
-
-        val logDisposable = appLog.subject
-                .map {
-                    it.map {
-                        LogItem(it.id,
-                                it.tag,
-                                it.content)
-                    }
-                }
-                .subscribe {
-                    logSection.update(it)
-                    logRecyclerView.smoothScrollToPosition(logRecyclerView.adapter.itemCount)
-                }
-        compositeDisposable.add(logDisposable)
+        logRecyclerView.adapter = onScreenLog.adapter
 
         val showLogDisposable = store.readSettingsShowLog()
                 .subscribe {
@@ -135,12 +116,9 @@ class MainActivity : BaseActivity(),
     }
 
     private fun goToFragment(key: Key) {
-        appLog.log(javaClass.simpleName,
-                "goToFragment $key")
+        Timber.d("goToFragment $key")
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer,
-                        key.newFragment(),
-                        key.fragmentTag)
+                .replace(R.id.fragmentContainer, key.newFragment(), key.fragmentTag)
                 .commit()
     }
 
@@ -149,7 +127,6 @@ class MainActivity : BaseActivity(),
          * Intent extra key for [ArrayList] of [Key]. This [ArrayList] is our fragment backstack
          */
         const val EXTRA_KEY_BACKSTACK_KEYS = "BACKSTACK_KEYS"
-        const val LOG_TAG = "MainActivity"
 
         fun startWith(activity: Activity,
                       vararg keys: Key) {

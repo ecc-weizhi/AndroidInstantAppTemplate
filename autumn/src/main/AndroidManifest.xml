@@ -3,7 +3,9 @@
     package="app.eccweizhi.androidinstantapptemplate.autumn">
 
     <application android:name="app.eccweizhi.androidinstantapptemplate.base.ui.App">
-        <activity android:name=".ui.AutumnActivity">
+        <activity
+            android:name=".ui.AutumnActivity"
+            android:taskAffinity="app.eccweizhi.androidinstantapptemplate">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 

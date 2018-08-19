@@ -3,7 +3,9 @@
     package="app.eccweizhi.androidinstantapptemplate.summer">
 
     <application android:name="app.eccweizhi.androidinstantapptemplate.base.ui.App">
-        <activity android:name=".ui.SummerActivity">
+        <activity
+            android:name=".ui.SummerActivity"
+            android:taskAffinity="app.eccweizhi.androidinstantapptemplate">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 

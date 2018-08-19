@@ -28,8 +28,8 @@ ext {
     compileSdkVersion = 27
     minSdkVersion = 19
     targetSdkVersion = 27
-    versionCode = 17
-    versionName = "1.0.3"
+    versionCode = 18
+    versionName = "1.0.4"
 
     // signing config
     keyStore = "stub"
